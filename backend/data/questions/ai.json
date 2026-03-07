@@ -1,0 +1,484 @@
+{
+  "subject": "Artificial Intelligence",
+  "topics": [
+    {
+      "id": "ai_basics",
+      "name": "AI Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "ai_intro",
+          "name": "Introduction to AI",
+          "questions": [
+            {
+              "id": "ai_intro_001",
+              "question": "What is Artificial Intelligence?",
+              "options": [
+                "Human intelligence",
+                "Machine intelligence mimicking human",
+                "Database system",
+                "Programming language"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ai_intro_002",
+              "question": "Types of AI are?",
+              "options": [
+                "Narrow AI and General AI",
+                "Supervised and Unsupervised",
+                "Strong and Weak",
+                "Both A and C"
+              ],
+              "correct": 3,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_intro_003",
+              "question": "Turing Test measures?",
+              "options": [
+                "Speed",
+                "Machine's ability to exhibit human intelligence",
+                "Memory",
+                "Processing power"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_intro_004",
+              "question": "Expert systems are?",
+              "options": [
+                "AI systems with human expert knowledge",
+                "Database systems",
+                "Operating systems",
+                "Programming tools"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_intro_005",
+              "question": "What is an intelligent agent?",
+              "options": [
+                "Human expert",
+                "Entity that perceives and acts",
+                "Database",
+                "Compiler"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_intro_006",
+              "question": "AI is used in?",
+              "options": [
+                "Gaming only",
+                "Healthcare only",
+                "Multiple domains",
+                "None"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            }
+          ]
+        },
+        {
+          "id": "search_algorithms",
+          "name": "Search Algorithms",
+          "questions": [
+            {
+              "id": "ai_search_001",
+              "question": "What is search in AI?",
+              "options": [
+                "Finding files",
+                "Finding solution path in problem space",
+                "Database query",
+                "Web search"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_search_002",
+              "question": "BFS is?",
+              "options": [
+                "Depth-first",
+                "Breadth-first search",
+                "Binary search",
+                "Best-first search"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ai_search_003",
+              "question": "DFS uses which data structure?",
+              "options": [
+                "Queue",
+                "Stack",
+                "Heap",
+                "Array"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ai_search_004",
+              "question": "A* algorithm is?",
+              "options": [
+                "Uninformed search",
+                "Informed search using heuristic",
+                "Random search",
+                "Exhaustive search"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_search_005",
+              "question": "Heuristic function estimates?",
+              "options": [
+                "Exact cost",
+                "Approximate cost to goal",
+                "Memory usage",
+                "Time complexity"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_search_006",
+              "question": "Greedy best-first search uses?",
+              "options": [
+                "Only heuristic",
+                "Only path cost",
+                "Both",
+                "Neither"
+              ],
+              "correct": 0,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knowledge_representation",
+      "name": "Knowledge Representation",
+      "prerequisites": [
+        "ai_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "logic",
+          "name": "Logic and Reasoning",
+          "questions": [
+            {
+              "id": "ai_logic_001",
+              "question": "Propositional logic uses?",
+              "options": [
+                "Predicates",
+                "True/False propositions",
+                "Fuzzy values",
+                "Probabilities"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_logic_002",
+              "question": "First-order logic includes?",
+              "options": [
+                "Only propositions",
+                "Predicates and quantifiers",
+                "No variables",
+                "Only constants"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_logic_003",
+              "question": "Inference is?",
+              "options": [
+                "Data collection",
+                "Deriving new facts from known facts",
+                "Storage",
+                "Deletion"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_logic_004",
+              "question": "Modus Ponens is?",
+              "options": [
+                "Search algorithm",
+                "Rule of inference",
+                "Data structure",
+                "Heuristic"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "ai_logic_005",
+              "question": "Knowledge base contains?",
+              "options": [
+                "Data only",
+                "Facts and rules",
+                "Code",
+                "Images"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ai_logic_006",
+              "question": "Forward chaining is?",
+              "options": [
+                "Backward reasoning",
+                "Data-driven reasoning",
+                "Random reasoning",
+                "No reasoning"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml_in_ai",
+      "name": "Machine Learning in AI",
+      "prerequisites": [
+        "ai_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "neural_networks",
+          "name": "Neural Networks",
+          "questions": [
+            {
+              "id": "ai_nn_001",
+              "question": "Perceptron is?",
+              "options": [
+                "Multi-layer network",
+                "Single layer neural network",
+                "Clustering algorithm",
+                "Search algorithm"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_nn_002",
+              "question": "Activation function does?",
+              "options": [
+                "Stores weights",
+                "Introduces non-linearity",
+                "Deletes neurons",
+                "Scales input"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_nn_003",
+              "question": "Backpropagation is used for?",
+              "options": [
+                "Forward pass",
+                "Weight updating",
+                "Data preprocessing",
+                "Testing"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_nn_004",
+              "question": "Deep learning uses?",
+              "options": [
+                "Single layer",
+                "Multiple hidden layers",
+                "No layers",
+                "Only input layer"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ai_nn_005",
+              "question": "CNN is used for?",
+              "options": [
+                "Text processing",
+                "Image processing",
+                "Audio only",
+                "Databases"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ai_nn_006",
+              "question": "RNN is used for?",
+              "options": [
+                "Images",
+                "Sequential data",
+                "Static data",
+                "Tables"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "ai_assess_001",
+      "question": "AI stands for?",
+      "options": [
+        "Automated Intelligence",
+        "Artificial Intelligence",
+        "Advanced Integration",
+        "Absolute Intelligence"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    },
+    {
+      "id": "ai_assess_002",
+      "question": "Turing Test is for?",
+      "options": [
+        "Speed testing",
+        "Intelligence testing",
+        "Memory testing",
+        "Network testing"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    },
+    {
+      "id": "ai_assess_003",
+      "question": "BFS stands for?",
+      "options": [
+        "Best First Search",
+        "Breadth First Search",
+        "Binary File Search",
+        "Backward First Search"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    },
+    {
+      "id": "ai_assess_004",
+      "question": "A* uses?",
+      "options": [
+        "Only heuristic",
+        "Heuristic + path cost",
+        "Random selection",
+        "No function"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    },
+    {
+      "id": "ai_assess_005",
+      "question": "Knowledge representation stores?",
+      "options": [
+        "Only data",
+        "Facts and rules",
+        "Images only",
+        "Videos only"
+      ],
+      "correct": 1,
+      "topics": [
+        "knowledge_representation"
+      ]
+    },
+    {
+      "id": "ai_assess_006",
+      "question": "Neural networks mimic?",
+      "options": [
+        "Computers",
+        "Human brain",
+        "Databases",
+        "Networks"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_in_ai"
+      ]
+    },
+    {
+      "id": "ai_assess_007",
+      "question": "Expert systems contain?",
+      "options": [
+        "Random data",
+        "Domain expert knowledge",
+        "Only code",
+        "Only images"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    },
+    {
+      "id": "ai_assess_008",
+      "question": "Propositional logic uses?",
+      "options": [
+        "Predicates",
+        "True/False statements",
+        "Probabilities",
+        "Fuzzy values"
+      ],
+      "correct": 1,
+      "topics": [
+        "knowledge_representation"
+      ]
+    },
+    {
+      "id": "ai_assess_009",
+      "question": "Deep learning is part of?",
+      "options": [
+        "Traditional programming",
+        "Machine learning",
+        "Database systems",
+        "Operating systems"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_in_ai"
+      ]
+    },
+    {
+      "id": "ai_assess_010",
+      "question": "Informed search uses?",
+      "options": [
+        "No information",
+        "Heuristic information",
+        "Random values",
+        "Only memory"
+      ],
+      "correct": 1,
+      "topics": [
+        "ai_basics"
+      ]
+    }
+  ]
+}

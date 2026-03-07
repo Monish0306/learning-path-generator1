@@ -1,0 +1,562 @@
+{
+  "subject": "C++ Programming",
+  "topics": [
+    {
+      "id": "cpp_basics",
+      "name": "C++ Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "cpp_intro",
+          "name": "Introduction to C++",
+          "questions": [
+            {
+              "id": "cpp_intro_001",
+              "question": "C++ is extension of?",
+              "options": [
+                "Java",
+                "C",
+                "Python",
+                "Pascal"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_intro_002",
+              "question": "C++ supports?",
+              "options": [
+                "Only procedural",
+                "Only OOP",
+                "Both procedural and OOP",
+                "Neither"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_intro_003",
+              "question": "Header file extension?",
+              "options": [
+                ".c",
+                ".h or .hpp",
+                ".cpp",
+                ".cc"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_intro_004",
+              "question": "cout is used for?",
+              "options": [
+                "Input",
+                "Output",
+                "Declaration",
+                "Loop"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_intro_005",
+              "question": "cin is used for?",
+              "options": [
+                "Output",
+                "Input",
+                "File handling",
+                "Memory allocation"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_intro_006",
+              "question": "Main function returns?",
+              "options": [
+                "void",
+                "int",
+                "float",
+                "char"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "cpp_datatypes",
+          "name": "Data Types and Operators",
+          "questions": [
+            {
+              "id": "cpp_dt_001",
+              "question": "Size of int (typically)?",
+              "options": [
+                "1 byte",
+                "2 bytes",
+                "4 bytes",
+                "8 bytes"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_dt_002",
+              "question": "char stores?",
+              "options": [
+                "Integer",
+                "Single character",
+                "String",
+                "Float"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_dt_003",
+              "question": "bool can have values?",
+              "options": [
+                "0 or 1",
+                "true or false",
+                "Both A and B",
+                "Any integer"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_dt_004",
+              "question": "Scope resolution operator?",
+              "options": [
+                ":",
+                "::",
+                ".",
+                "->"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_dt_005",
+              "question": "sizeof operator returns?",
+              "options": [
+                "Value",
+                "Size in bytes",
+                "Address",
+                "Type"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_dt_006",
+              "question": "++ is?",
+              "options": [
+                "Addition",
+                "Increment operator",
+                "Comparison",
+                "Assignment"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cpp_oop",
+      "name": "Object-Oriented Programming",
+      "prerequisites": [
+        "cpp_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "cpp_classes",
+          "name": "Classes and Objects",
+          "questions": [
+            {
+              "id": "cpp_class_001",
+              "question": "Class keyword defines?",
+              "options": [
+                "Function",
+                "User-defined data type",
+                "Variable",
+                "Array"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_class_002",
+              "question": "Default access specifier in class?",
+              "options": [
+                "public",
+                "private",
+                "protected",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_class_003",
+              "question": "Constructor name is?",
+              "options": [
+                "Any name",
+                "Same as class",
+                "__init__",
+                "create"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_class_004",
+              "question": "Destructor is called?",
+              "options": [
+                "At object creation",
+                "At object destruction",
+                "Manually",
+                "Never"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_class_005",
+              "question": "Destructor syntax?",
+              "options": [
+                "~ClassName()",
+                "delete ClassName()",
+                "destroy()",
+                "remove()"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_class_006",
+              "question": "this pointer holds?",
+              "options": [
+                "Class address",
+                "Current object address",
+                "Function address",
+                "NULL"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "cpp_inheritance",
+          "name": "Inheritance and Polymorphism",
+          "questions": [
+            {
+              "id": "cpp_inherit_001",
+              "question": "Inheritance syntax?",
+              "options": [
+                "class Child extends Parent",
+                "class Child : public Parent",
+                "class Child inherits Parent",
+                "class Child(Parent)"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_inherit_002",
+              "question": "C++ supports?",
+              "options": [
+                "Only single inheritance",
+                "Multiple inheritance",
+                "No inheritance",
+                "Interface only"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_inherit_003",
+              "question": "Virtual function enables?",
+              "options": [
+                "Encapsulation",
+                "Runtime polymorphism",
+                "Inheritance",
+                "Abstraction"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "cpp_inherit_004",
+              "question": "Pure virtual function?",
+              "options": [
+                "Has implementation",
+                "= 0 in declaration",
+                "Cannot be overridden",
+                "Static function"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "cpp_inherit_005",
+              "question": "Function overloading is?",
+              "options": [
+                "Same function different parameters",
+                "Different functions",
+                "Virtual function",
+                "Abstract function"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_inherit_006",
+              "question": "Operator overloading allows?",
+              "options": [
+                "New operators",
+                "Redefining operator behavior",
+                "Deleting operators",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cpp_pointers",
+      "name": "Pointers and Memory",
+      "prerequisites": [
+        "cpp_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "pointers",
+          "name": "Pointers",
+          "questions": [
+            {
+              "id": "cpp_ptr_001",
+              "question": "Pointer stores?",
+              "options": [
+                "Value",
+                "Memory address",
+                "Data type",
+                "Function"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_ptr_002",
+              "question": "& operator gets?",
+              "options": [
+                "Value",
+                "Address of variable",
+                "Size",
+                "Type"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "cpp_ptr_003",
+              "question": "* operator for pointer?",
+              "options": [
+                "Gets address",
+                "Dereferences pointer",
+                "Multiplies",
+                "Declares"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_ptr_004",
+              "question": "NULL pointer points to?",
+              "options": [
+                "Random address",
+                "Nothing/invalid",
+                "0 address",
+                "Last address"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_ptr_005",
+              "question": "Dynamic memory allocation uses?",
+              "options": [
+                "malloc",
+                "new",
+                "alloc",
+                "create"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "cpp_ptr_006",
+              "question": "delete operator?",
+              "options": [
+                "Allocates memory",
+                "Deallocates memory",
+                "Deletes variable",
+                "Removes pointer"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "cpp_assess_001",
+      "question": "C++ is?",
+      "options": [
+        "Procedural only",
+        "Object-oriented only",
+        "Both procedural and OOP",
+        "Functional"
+      ],
+      "correct": 2,
+      "topics": [
+        "cpp_basics"
+      ]
+    },
+    {
+      "id": "cpp_assess_002",
+      "question": "cout is for?",
+      "options": [
+        "Input",
+        "Output",
+        "File operation",
+        "Memory"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_basics"
+      ]
+    },
+    {
+      "id": "cpp_assess_003",
+      "question": "Class defines?",
+      "options": [
+        "Function",
+        "User-defined type",
+        "Variable",
+        "Loop"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_oop"
+      ]
+    },
+    {
+      "id": "cpp_assess_004",
+      "question": "Pointer stores?",
+      "options": [
+        "Value",
+        "Address",
+        "Type",
+        "Size"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_pointers"
+      ]
+    },
+    {
+      "id": "cpp_assess_005",
+      "question": "Constructor is called when?",
+      "options": [
+        "Object destroyed",
+        "Object created",
+        "Function called",
+        "Program ends"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_oop"
+      ]
+    },
+    {
+      "id": "cpp_assess_006",
+      "question": "C++ supports multiple inheritance?",
+      "options": [
+        "No",
+        "Yes",
+        "Only with interfaces",
+        "Only single"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_oop"
+      ]
+    },
+    {
+      "id": "cpp_assess_007",
+      "question": "Destructor syntax?",
+      "options": [
+        "~ClassName()",
+        "delete()",
+        "destroy()",
+        "remove()"
+      ],
+      "correct": 0,
+      "topics": [
+        "cpp_oop"
+      ]
+    },
+    {
+      "id": "cpp_assess_008",
+      "question": "new operator?",
+      "options": [
+        "Deletes memory",
+        "Allocates memory",
+        "Copies memory",
+        "Frees memory"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_pointers"
+      ]
+    },
+    {
+      "id": "cpp_assess_009",
+      "question": "Virtual function enables?",
+      "options": [
+        "Compile-time polymorphism",
+        "Runtime polymorphism",
+        "Encapsulation",
+        "Inheritance"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_oop"
+      ]
+    },
+    {
+      "id": "cpp_assess_010",
+      "question": "Scope resolution operator?",
+      "options": [
+        ":",
+        "::",
+        ".",
+        "->"
+      ],
+      "correct": 1,
+      "topics": [
+        "cpp_basics"
+      ]
+    }
+  ]
+}

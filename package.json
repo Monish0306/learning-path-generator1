@@ -1,0 +1,34 @@
+{
+  "name": "learning-path-generator",
+  "version": "1.0.0",
+  "description": "Personalized Learning Path Generator using DAA Algorithms",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "education",
+    "learning",
+    "algorithms",
+    "personalized-learning",
+    "adaptive-learning",
+    "daa",
+    "topological-sort"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

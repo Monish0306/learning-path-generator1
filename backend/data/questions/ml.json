@@ -1,0 +1,562 @@
+{
+  "subject": "Machine Learning",
+  "topics": [
+    {
+      "id": "ml_basics",
+      "name": "ML Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "ml_intro",
+          "name": "Introduction to ML",
+          "questions": [
+            {
+              "id": "ml_intro_001",
+              "question": "What is Machine Learning?",
+              "options": [
+                "Programming computers",
+                "Learning from data without explicit programming",
+                "Database management",
+                "Web development"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_intro_002",
+              "question": "Types of Machine Learning are?",
+              "options": [
+                "Supervised and Unsupervised only",
+                "Supervised, Unsupervised, Reinforcement",
+                "Only Deep Learning",
+                "Classification only"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_intro_003",
+              "question": "What is supervised learning?",
+              "options": [
+                "Learning without labels",
+                "Learning with labeled data",
+                "Clustering",
+                "Dimensionality reduction"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_intro_004",
+              "question": "Examples of supervised learning?",
+              "options": [
+                "K-means",
+                "Classification and Regression",
+                "PCA",
+                "Association"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_intro_005",
+              "question": "What is unsupervised learning?",
+              "options": [
+                "Learning with labels",
+                "Learning without labels",
+                "Regression",
+                "Classification"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_intro_006",
+              "question": "What is overfitting?",
+              "options": [
+                "Model performs well on training but poor on test",
+                "Model performs poorly",
+                "Model is too simple",
+                "Model has no errors"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "ml_preprocessing",
+          "name": "Data Preprocessing",
+          "questions": [
+            {
+              "id": "ml_prep_001",
+              "question": "What is feature scaling?",
+              "options": [
+                "Removing features",
+                "Normalizing feature values",
+                "Adding features",
+                "Feature selection"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_prep_002",
+              "question": "Why do we split data into train and test?",
+              "options": [
+                "To reduce data",
+                "To evaluate model on unseen data",
+                "To clean data",
+                "To visualize data"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_prep_003",
+              "question": "What is data normalization?",
+              "options": [
+                "Removing duplicates",
+                "Scaling features to a range",
+                "Encoding labels",
+                "Splitting data"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_prep_004",
+              "question": "How to handle missing values?",
+              "options": [
+                "Delete all data",
+                "Imputation or deletion",
+                "Ignore them",
+                "Add more data"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_prep_005",
+              "question": "What is one-hot encoding?",
+              "options": [
+                "Numerical encoding",
+                "Converting categorical to binary vectors",
+                "Scaling",
+                "Normalization"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_prep_006",
+              "question": "What is feature engineering?",
+              "options": [
+                "Deleting features",
+                "Creating new features from existing",
+                "Scaling features",
+                "Training model"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml_algorithms",
+      "name": "ML Algorithms",
+      "prerequisites": [
+        "ml_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "classification",
+          "name": "Classification Algorithms",
+          "questions": [
+            {
+              "id": "ml_class_001",
+              "question": "What is classification?",
+              "options": [
+                "Predicting continuous values",
+                "Predicting discrete labels",
+                "Clustering",
+                "Dimensionality reduction"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_class_002",
+              "question": "Which is a classification algorithm?",
+              "options": [
+                "Linear Regression",
+                "Logistic Regression",
+                "K-means",
+                "PCA"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_class_003",
+              "question": "Decision Tree splits based on?",
+              "options": [
+                "Random selection",
+                "Information gain or Gini index",
+                "Linear function",
+                "Distance"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_class_004",
+              "question": "What is KNN?",
+              "options": [
+                "Neural network",
+                "K-Nearest Neighbors",
+                "Kernel method",
+                "Clustering"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_class_005",
+              "question": "Random Forest is?",
+              "options": [
+                "Single decision tree",
+                "Ensemble of decision trees",
+                "Linear model",
+                "Clustering algorithm"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_class_006",
+              "question": "Support Vector Machine finds?",
+              "options": [
+                "Clusters",
+                "Hyperplane with maximum margin",
+                "Regression line",
+                "Decision tree"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        },
+        {
+          "id": "regression",
+          "name": "Regression Algorithms",
+          "questions": [
+            {
+              "id": "ml_reg_001",
+              "question": "What is regression?",
+              "options": [
+                "Predicting labels",
+                "Predicting continuous values",
+                "Clustering",
+                "Classification"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_reg_002",
+              "question": "Linear regression finds?",
+              "options": [
+                "Classification boundary",
+                "Best fit line",
+                "Clusters",
+                "Decision tree"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_reg_003",
+              "question": "What is R-squared?",
+              "options": [
+                "Classification metric",
+                "Goodness of fit measure",
+                "Distance metric",
+                "Loss function"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_reg_004",
+              "question": "Polynomial regression is?",
+              "options": [
+                "Linear model",
+                "Non-linear model using polynomials",
+                "Classification",
+                "Clustering"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_reg_005",
+              "question": "What is regularization?",
+              "options": [
+                "Increasing complexity",
+                "Preventing overfitting by penalizing complexity",
+                "Data cleaning",
+                "Feature scaling"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "ml_reg_006",
+              "question": "Ridge regression uses?",
+              "options": [
+                "L1 regularization",
+                "L2 regularization",
+                "No regularization",
+                "Both L1 and L2"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml_evaluation",
+      "name": "Model Evaluation",
+      "prerequisites": [
+        "ml_algorithms"
+      ],
+      "subtopics": [
+        {
+          "id": "metrics",
+          "name": "Evaluation Metrics",
+          "questions": [
+            {
+              "id": "ml_eval_001",
+              "question": "What is accuracy?",
+              "options": [
+                "Total errors",
+                "Correct predictions / Total predictions",
+                "Precision + Recall",
+                "F1 score"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "ml_eval_002",
+              "question": "What is precision?",
+              "options": [
+                "True Positives / (True Positives + False Positives)",
+                "Total correct",
+                "Recall",
+                "Accuracy"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_eval_003",
+              "question": "What is recall?",
+              "options": [
+                "Precision",
+                "True Positives / (True Positives + False Negatives)",
+                "Accuracy",
+                "F1 score"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_eval_004",
+              "question": "F1 score is?",
+              "options": [
+                "Mean of precision and recall",
+                "Harmonic mean of precision and recall",
+                "Product of precision and recall",
+                "Sum of precision and recall"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "ml_eval_005",
+              "question": "Confusion matrix shows?",
+              "options": [
+                "Model accuracy only",
+                "True/False Positives/Negatives",
+                "Training loss",
+                "Learning rate"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "ml_eval_006",
+              "question": "ROC curve plots?",
+              "options": [
+                "Accuracy vs Epochs",
+                "True Positive Rate vs False Positive Rate",
+                "Precision vs Recall",
+                "Loss vs Iterations"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "ml_assess_001",
+      "question": "What is Machine Learning?",
+      "options": [
+        "Traditional programming",
+        "Learning from data",
+        "Database design",
+        "Web framework"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_basics"
+      ]
+    },
+    {
+      "id": "ml_assess_002",
+      "question": "Supervised learning uses?",
+      "options": [
+        "Unlabeled data",
+        "Labeled data",
+        "No data",
+        "Random data"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_basics"
+      ]
+    },
+    {
+      "id": "ml_assess_003",
+      "question": "Classification predicts?",
+      "options": [
+        "Continuous values",
+        "Categories",
+        "Clusters",
+        "Relationships"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_algorithms"
+      ]
+    },
+    {
+      "id": "ml_assess_004",
+      "question": "Regression predicts?",
+      "options": [
+        "Labels",
+        "Continuous values",
+        "Categories",
+        "Clusters"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_algorithms"
+      ]
+    },
+    {
+      "id": "ml_assess_005",
+      "question": "Overfitting means?",
+      "options": [
+        "Good model",
+        "Model memorizes training data",
+        "Model is too simple",
+        "Perfect model"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_basics"
+      ]
+    },
+    {
+      "id": "ml_assess_006",
+      "question": "K-means is used for?",
+      "options": [
+        "Classification",
+        "Regression",
+        "Clustering",
+        "Dimensionality reduction"
+      ],
+      "correct": 2,
+      "topics": [
+        "ml_algorithms"
+      ]
+    },
+    {
+      "id": "ml_assess_007",
+      "question": "What is feature scaling?",
+      "options": [
+        "Adding features",
+        "Normalizing values",
+        "Removing features",
+        "Encoding"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_basics"
+      ]
+    },
+    {
+      "id": "ml_assess_008",
+      "question": "Accuracy is?",
+      "options": [
+        "Precision + Recall",
+        "Correct predictions / Total",
+        "Loss function",
+        "Optimization metric"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_evaluation"
+      ]
+    },
+    {
+      "id": "ml_assess_009",
+      "question": "Neural networks are part of?",
+      "options": [
+        "Traditional ML",
+        "Deep Learning",
+        "Statistics",
+        "Database"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_basics"
+      ]
+    },
+    {
+      "id": "ml_assess_010",
+      "question": "Cross-validation is used for?",
+      "options": [
+        "Training",
+        "Model evaluation",
+        "Data cleaning",
+        "Feature selection"
+      ],
+      "correct": 1,
+      "topics": [
+        "ml_evaluation"
+      ]
+    }
+  ]
+}

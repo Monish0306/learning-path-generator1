@@ -1,0 +1,1048 @@
+{
+  "subject": "Python Programming",
+  "topics": [
+    {
+      "id": "python_basics",
+      "name": "Python Basics",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "variables",
+          "name": "Variables and Data Types",
+          "questions": [
+            {
+              "id": "py_var_001",
+              "question": "What is the output of: print(type(5.0))?",
+              "options": [
+                "<class 'int'>",
+                "<class 'float'>",
+                "<class 'str'>",
+                "<class 'number'>"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_var_002",
+              "question": "Which of the following is a valid variable name in Python?",
+              "options": [
+                "2variable",
+                "_variable",
+                "variable-name",
+                "variable name"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_var_003",
+              "question": "What will be the output: x = 10; y = 5; print(x // y)?",
+              "options": [
+                "2.0",
+                "2",
+                "15",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_var_004",
+              "question": "What is the result of: bool(0)?",
+              "options": [
+                "True",
+                "False",
+                "0",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_var_005",
+              "question": "How do you convert the string '123' to an integer?",
+              "options": [
+                "str(123)",
+                "int('123')",
+                "float('123')",
+                "convert('123')"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_var_006",
+              "question": "What is the output: print('Hello' * 3)?",
+              "options": [
+                "HelloHelloHello",
+                "Hello 3",
+                "Hello Hello Hello",
+                "Error"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "control_flow",
+          "name": "Control Flow",
+          "questions": [
+            {
+              "id": "py_cf_001",
+              "question": "What is the output of: for i in range(3): print(i)",
+              "options": [
+                "1 2 3",
+                "0 1 2",
+                "0 1 2 3",
+                "1 2"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_cf_002",
+              "question": "Which keyword is used to exit a loop prematurely?",
+              "options": [
+                "exit",
+                "break",
+                "stop",
+                "return"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_cf_003",
+              "question": "What does 'continue' do in a loop?",
+              "options": [
+                "Exits the loop",
+                "Skips to next iteration",
+                "Restarts the loop",
+                "Pauses the loop"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_cf_004",
+              "question": "What is the output: x = 5 if 5 > 3 else 0?",
+              "options": [
+                "5",
+                "0",
+                "True",
+                "Error"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_cf_005",
+              "question": "Which statement is true about Python loops?",
+              "options": [
+                "Python has do-while loops",
+                "for loops can only iterate over lists",
+                "while loops check condition before execution",
+                "loops cannot be nested"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_cf_006",
+              "question": "What is the output: for i in range(2, 6, 2): print(i, end=' ')",
+              "options": [
+                "2 4 ",
+                "2 4 6 ",
+                "2 3 4 5 ",
+                "4 6 "
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "lists",
+          "name": "Lists and Collections",
+          "questions": [
+            {
+              "id": "py_list_001",
+              "question": "How do you create an empty list?",
+              "options": [
+                "list = {}",
+                "list = []",
+                "list = ()",
+                "list = <>"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_list_002",
+              "question": "What method adds an element to the end of a list?",
+              "options": [
+                "add()",
+                "append()",
+                "insert()",
+                "push()"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_list_003",
+              "question": "What is the output: [1,2,3][1]?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_list_004",
+              "question": "How do you get the length of a list?",
+              "options": [
+                "list.length()",
+                "len(list)",
+                "list.size()",
+                "count(list)"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_list_005",
+              "question": "What does list slicing [1:3] return?",
+              "options": [
+                "Elements at index 1 and 3",
+                "Elements at index 1 and 2",
+                "Elements at index 0, 1, 2",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_list_006",
+              "question": "Which method removes and returns the last element?",
+              "options": [
+                "remove()",
+                "delete()",
+                "pop()",
+                "extract()"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python_functions",
+      "name": "Functions",
+      "prerequisites": [
+        "python_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "function_basics",
+          "name": "Function Basics",
+          "questions": [
+            {
+              "id": "py_func_001",
+              "question": "How do you define a function in Python?",
+              "options": [
+                "function myFunc():",
+                "def myFunc():",
+                "define myFunc():",
+                "func myFunc():"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_func_002",
+              "question": "What keyword is used to return a value from a function?",
+              "options": [
+                "return",
+                "yield",
+                "give",
+                "output"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_func_003",
+              "question": "What is the output: def f(x): return x*2\nprint(f(5))",
+              "options": [
+                "10",
+                "5",
+                "25",
+                "Error"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_func_004",
+              "question": "What are default arguments in Python functions?",
+              "options": [
+                "Required parameters",
+                "Optional parameters with default values",
+                "Variable arguments",
+                "Keyword arguments"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_func_005",
+              "question": "What is *args used for?",
+              "options": [
+                "Default arguments",
+                "Keyword arguments",
+                "Variable positional arguments",
+                "Return multiple values"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_func_006",
+              "question": "Can a function return multiple values?",
+              "options": [
+                "No",
+                "Yes, as a tuple",
+                "Only with special syntax",
+                "Only in Python 3"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "lambda",
+          "name": "Lambda Functions",
+          "questions": [
+            {
+              "id": "py_lambda_001",
+              "question": "What is a lambda function?",
+              "options": [
+                "A named function",
+                "An anonymous function",
+                "A built-in function",
+                "A class method"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_lambda_002",
+              "question": "What is the syntax for lambda?",
+              "options": [
+                "lambda x: x+1",
+                "def lambda(x): x+1",
+                "lambda(x) => x+1",
+                "x => x+1"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_lambda_003",
+              "question": "What is the output: (lambda x: x**2)(4)?",
+              "options": [
+                "8",
+                "16",
+                "4",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_lambda_004",
+              "question": "Can lambda functions have multiple arguments?",
+              "options": [
+                "No",
+                "Yes",
+                "Only two",
+                "Only with special syntax"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_lambda_005",
+              "question": "Where are lambda functions commonly used?",
+              "options": [
+                "As class constructors",
+                "With map/filter/reduce",
+                "For async operations",
+                "For file handling"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_lambda_006",
+              "question": "What is the output: list(map(lambda x: x*2, [1,2,3]))?",
+              "options": [
+                "[1,2,3]",
+                "[2,4,6]",
+                "[3,6,9]",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python_data_structures",
+      "name": "Data Structures",
+      "prerequisites": [
+        "python_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "lists_advanced",
+          "name": "Lists and List Operations",
+          "questions": [
+            {
+              "id": "py_list_adv_001",
+              "question": "What is list comprehension in Python?",
+              "options": [
+                "A way to compress lists",
+                "Concise way to create lists",
+                "List sorting method",
+                "List indexing"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_list_adv_002",
+              "question": "What does list.extend() do?",
+              "options": [
+                "Adds single element",
+                "Adds multiple elements from iterable",
+                "Removes elements",
+                "Sorts list"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_list_adv_003",
+              "question": "What is the output: [x**2 for x in range(3)]?",
+              "options": [
+                "[0, 1, 2]",
+                "[0, 1, 4]",
+                "[1, 4, 9]",
+                "Error"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "py_list_adv_004",
+              "question": "How to reverse a list in place?",
+              "options": [
+                "list.reverse()",
+                "reversed(list)",
+                "list[::-1]",
+                "reverse(list)"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_list_adv_005",
+              "question": "What does list.sort() return?",
+              "options": [
+                "Sorted list",
+                "None",
+                "True",
+                "Index"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "py_list_adv_006",
+              "question": "What is slicing with step: list[::2]?",
+              "options": [
+                "Every element",
+                "Every 2nd element",
+                "First 2 elements",
+                "Last 2 elements"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "dictionaries",
+          "name": "Dictionaries and Sets",
+          "questions": [
+            {
+              "id": "py_dict_001",
+              "question": "How to create an empty dictionary?",
+              "options": [
+                "{}",
+                "dict()",
+                "Both A and B",
+                "[]"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_dict_002",
+              "question": "How to access dictionary value by key?",
+              "options": [
+                "dict[key]",
+                "dict.get(key)",
+                "Both A and B",
+                "dict.value(key)"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_dict_003",
+              "question": "What happens when accessing non-existent key with dict[key]?",
+              "options": [
+                "Returns None",
+                "Returns 0",
+                "Raises KeyError",
+                "Returns False"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_dict_004",
+              "question": "What is dict.get('key', 'default')?",
+              "options": [
+                "Gets key only",
+                "Gets key or returns default if missing",
+                "Sets default",
+                "Deletes key"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_dict_005",
+              "question": "How to get all keys from dictionary?",
+              "options": [
+                "dict.keys()",
+                "dict.getKeys()",
+                "keys(dict)",
+                "dict.all()"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_dict_006",
+              "question": "What data structure is set in Python?",
+              "options": [
+                "Ordered collection",
+                "Unordered unique elements",
+                "Array",
+                "Tuple"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "tuples",
+          "name": "Tuples",
+          "questions": [
+            {
+              "id": "py_tuple_001",
+              "question": "What is a tuple?",
+              "options": [
+                "Mutable sequence",
+                "Immutable sequence",
+                "Dictionary",
+                "Set"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_tuple_002",
+              "question": "How to create a tuple with single element?",
+              "options": [
+                "(5)",
+                "(5,)",
+                "[5]",
+                "{5}"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_tuple_003",
+              "question": "Can you modify a tuple after creation?",
+              "options": [
+                "Yes, always",
+                "No, tuples are immutable",
+                "Only with special methods",
+                "Yes, with append()"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_tuple_004",
+              "question": "What is tuple unpacking?",
+              "options": [
+                "Deleting tuple",
+                "Assigning tuple elements to variables",
+                "Sorting tuple",
+                "Creating tuple"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_tuple_005",
+              "question": "What is the output: a, b = (1, 2)?",
+              "options": [
+                "a=1, b=2",
+                "a=(1,2)",
+                "Error",
+                "a=2, b=1"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_tuple_006",
+              "question": "Tuples are faster than lists?",
+              "options": [
+                "False",
+                "True",
+                "Same speed",
+                "Depends on size"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python_file_handling",
+      "name": "File Handling and Exceptions",
+      "prerequisites": [
+        "python_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "file_operations",
+          "name": "File Operations",
+          "questions": [
+            {
+              "id": "py_file_001",
+              "question": "How to open a file in read mode?",
+              "options": [
+                "open('file.txt', 'r')",
+                "read('file.txt')",
+                "file.open('r')",
+                "open.read('file.txt')"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_file_002",
+              "question": "What does 'w' mode do when opening a file?",
+              "options": [
+                "Reads file",
+                "Writes file (overwrites)",
+                "Appends to file",
+                "Creates directory"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_file_003",
+              "question": "How to read entire file content?",
+              "options": [
+                "file.read()",
+                "file.readall()",
+                "read(file)",
+                "file.get()"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_file_004",
+              "question": "What is the purpose of 'with' statement?",
+              "options": [
+                "Loop construct",
+                "Automatic resource management",
+                "Condition check",
+                "Function definition"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_file_005",
+              "question": "What does file.close() do?",
+              "options": [
+                "Deletes file",
+                "Closes file handle",
+                "Saves file",
+                "Reads file"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_file_006",
+              "question": "How to append data to existing file?",
+              "options": [
+                "open('file', 'r')",
+                "open('file', 'w')",
+                "open('file', 'a')",
+                "open('file', 'x')"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "exception_handling",
+          "name": "Exception Handling",
+          "questions": [
+            {
+              "id": "py_except_001",
+              "question": "How to handle exceptions in Python?",
+              "options": [
+                "if-else",
+                "try-except",
+                "switch-case",
+                "catch-throw"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_except_002",
+              "question": "What is the purpose of finally block?",
+              "options": [
+                "Handles errors",
+                "Always executes",
+                "Catches exceptions",
+                "Defines exceptions"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_except_003",
+              "question": "How to raise an exception manually?",
+              "options": [
+                "throw Exception",
+                "raise Exception",
+                "error Exception",
+                "exception()"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_except_004",
+              "question": "What is ZeroDivisionError?",
+              "options": [
+                "Syntax error",
+                "Runtime error when dividing by zero",
+                "Import error",
+                "Name error"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_except_005",
+              "question": "Can you have multiple except blocks?",
+              "options": [
+                "No",
+                "Yes",
+                "Only two",
+                "Only with finally"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_except_006",
+              "question": "What does 'except Exception as e' do?",
+              "options": [
+                "Ignores exception",
+                "Catches exception and stores in variable e",
+                "Raises exception",
+                "Logs exception"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "python_oop",
+      "name": "Object-Oriented Programming",
+      "prerequisites": [
+        "python_functions"
+      ],
+      "subtopics": [
+        {
+          "id": "classes",
+          "name": "Classes and Objects",
+          "questions": [
+            {
+              "id": "py_class_001",
+              "question": "How do you define a class in Python?",
+              "options": [
+                "class MyClass:",
+                "Class MyClass:",
+                "define MyClass:",
+                "object MyClass:"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_class_002",
+              "question": "What is 'self' in Python?",
+              "options": [
+                "A keyword",
+                "Reference to current instance",
+                "A built-in function",
+                "A variable"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_class_003",
+              "question": "What is __init__ method?",
+              "options": [
+                "Destructor",
+                "Constructor",
+                "Static method",
+                "Class method"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_class_004",
+              "question": "How do you create an object?",
+              "options": [
+                "obj = new MyClass()",
+                "obj = MyClass()",
+                "obj = create MyClass()",
+                "obj = MyClass.new()"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "py_class_005",
+              "question": "What is inheritance?",
+              "options": [
+                "Creating multiple objects",
+                "Deriving class from another class",
+                "Method overloading",
+                "Variable shadowing"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "py_class_006",
+              "question": "What is encapsulation?",
+              "options": [
+                "Hiding internal details",
+                "Creating classes",
+                "Multiple inheritance",
+                "Method overriding"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "py_assess_001",
+      "question": "What is Python primarily used for?",
+      "options": [
+        "Only web development",
+        "General-purpose programming",
+        "Only data science",
+        "Only game development"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_002",
+      "question": "What is the output: print(2 ** 3)?",
+      "options": [
+        "6",
+        "8",
+        "9",
+        "5"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_003",
+      "question": "Which data structure is ordered and mutable?",
+      "options": [
+        "tuple",
+        "list",
+        "set",
+        "frozenset"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_004",
+      "question": "What keyword defines a function?",
+      "options": [
+        "func",
+        "define",
+        "def",
+        "function"
+      ],
+      "correct": 2,
+      "topics": [
+        "python_functions"
+      ]
+    },
+    {
+      "id": "py_assess_005",
+      "question": "How do you start a for loop?",
+      "options": [
+        "for i in range():",
+        "loop i in range():",
+        "foreach i:",
+        "for(i=0;i<10;i++):"
+      ],
+      "correct": 0,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_006",
+      "question": "What is list comprehension?",
+      "options": [
+        "A way to compress lists",
+        "Concise way to create lists",
+        "List documentation",
+        "List type checking"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_007",
+      "question": "What does 'self' represent in a class?",
+      "options": [
+        "The class itself",
+        "The instance of the class",
+        "A keyword",
+        "A built-in function"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_oop"
+      ]
+    },
+    {
+      "id": "py_assess_008",
+      "question": "How do you handle exceptions?",
+      "options": [
+        "if-else",
+        "try-except",
+        "catch-throw",
+        "handle-error"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_basics"
+      ]
+    },
+    {
+      "id": "py_assess_009",
+      "question": "What does the return statement do?",
+      "options": [
+        "Exits the program",
+        "Returns a value from function",
+        "Prints output",
+        "Creates a loop"
+      ],
+      "correct": 1,
+      "topics": [
+        "python_functions"
+      ]
+    },
+    {
+      "id": "py_assess_010",
+      "question": "Which is NOT a Python data type?",
+      "options": [
+        "list",
+        "tuple",
+        "array",
+        "dictionary"
+      ],
+      "correct": 2,
+      "topics": [
+        "python_basics"
+      ]
+    }
+  ]
+}

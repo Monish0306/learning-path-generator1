@@ -1,0 +1,649 @@
+{
+  "subject": "Design and Analysis of Algorithms",
+  "topics": [
+    {
+      "id": "daa_basics",
+      "name": "Algorithm Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "complexity",
+          "name": "Time and Space Complexity",
+          "questions": [
+            {
+              "id": "daa_comp_001",
+              "question": "What does Big O notation represent?",
+              "options": [
+                "Best case complexity",
+                "Average case complexity",
+                "Worst case complexity",
+                "Space complexity"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_comp_002",
+              "question": "What is the time complexity of binary search?",
+              "options": [
+                "O(n)",
+                "O(log n)",
+                "O(n log n)",
+                "O(1)"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_comp_003",
+              "question": "What is the time complexity of accessing an array element?",
+              "options": [
+                "O(1)",
+                "O(n)",
+                "O(log n)",
+                "O(n^2)"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_comp_004",
+              "question": "Which complexity is better: O(n) or O(n^2)?",
+              "options": [
+                "O(n^2)",
+                "O(n)",
+                "Both are same",
+                "Depends on input"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_comp_005",
+              "question": "What is space complexity?",
+              "options": [
+                "Time taken by algorithm",
+                "Memory used by algorithm",
+                "Number of operations",
+                "Size of input"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_comp_006",
+              "question": "What is the complexity of nested loops with n iterations each?",
+              "options": [
+                "O(n)",
+                "O(2n)",
+                "O(n^2)",
+                "O(log n)"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "asymptotic",
+          "name": "Asymptotic Notations",
+          "questions": [
+            {
+              "id": "daa_asym_001",
+              "question": "What does Theta (Θ) notation represent?",
+              "options": [
+                "Upper bound",
+                "Lower bound",
+                "Tight bound",
+                "Average bound"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_asym_002",
+              "question": "What does Omega (Ω) notation represent?",
+              "options": [
+                "Upper bound",
+                "Lower bound",
+                "Tight bound",
+                "Worst case"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_asym_003",
+              "question": "Big O represents which bound?",
+              "options": [
+                "Lower bound",
+                "Upper bound",
+                "Tight bound",
+                "Exact bound"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_asym_004",
+              "question": "Which is true: O(2n) = ?",
+              "options": [
+                "O(n)",
+                "O(n^2)",
+                "O(2^n)",
+                "O(log n)"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_asym_005",
+              "question": "What is the order: O(1), O(log n), O(n), O(n log n)?",
+              "options": [
+                "Slowest to fastest",
+                "Fastest to slowest",
+                "Random order",
+                "All same"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_asym_006",
+              "question": "O(log n) is typical of which algorithm type?",
+              "options": [
+                "Linear search",
+                "Divide and conquer",
+                "Brute force",
+                "Backtracking"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sorting",
+      "name": "Sorting Algorithms",
+      "prerequisites": [
+        "daa_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "basic_sorting",
+          "name": "Basic Sorting",
+          "questions": [
+            {
+              "id": "daa_sort_001",
+              "question": "What is the time complexity of Bubble Sort?",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(log n)"
+              ],
+              "correct": 2,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_sort_002",
+              "question": "Which sorting algorithm is most efficient?",
+              "options": [
+                "Bubble Sort",
+                "Selection Sort",
+                "Merge Sort",
+                "Insertion Sort"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_sort_003",
+              "question": "What is the best case of Insertion Sort?",
+              "options": [
+                "O(n^2)",
+                "O(n log n)",
+                "O(n)",
+                "O(1)"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_sort_004",
+              "question": "Which sorting is stable?",
+              "options": [
+                "Quick Sort",
+                "Heap Sort",
+                "Merge Sort",
+                "Selection Sort"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_sort_005",
+              "question": "What does stable sorting mean?",
+              "options": [
+                "Fast sorting",
+                "Preserves relative order of equal elements",
+                "Uses less memory",
+                "Always O(n log n)"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "daa_sort_006",
+              "question": "Quick Sort uses which technique?",
+              "options": [
+                "Divide and Conquer",
+                "Dynamic Programming",
+                "Greedy",
+                "Backtracking"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "advanced_sorting",
+          "name": "Advanced Sorting",
+          "questions": [
+            {
+              "id": "daa_advsort_001",
+              "question": "What is the average time complexity of Quick Sort?",
+              "options": [
+                "O(n)",
+                "O(n log n)",
+                "O(n^2)",
+                "O(log n)"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_advsort_002",
+              "question": "Merge Sort space complexity is?",
+              "options": [
+                "O(1)",
+                "O(log n)",
+                "O(n)",
+                "O(n^2)"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_advsort_003",
+              "question": "Heap Sort is based on?",
+              "options": [
+                "Array",
+                "Binary Heap",
+                "Linked List",
+                "Hash Table"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_advsort_004",
+              "question": "Which sorting is NOT comparison-based?",
+              "options": [
+                "Merge Sort",
+                "Quick Sort",
+                "Counting Sort",
+                "Heap Sort"
+              ],
+              "correct": 2,
+              "difficulty": "hard"
+            },
+            {
+              "id": "daa_advsort_005",
+              "question": "Radix Sort time complexity?",
+              "options": [
+                "O(n)",
+                "O(nk)",
+                "O(n log n)",
+                "O(n^2)"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "daa_advsort_006",
+              "question": "Which sorting is in-place?",
+              "options": [
+                "Merge Sort",
+                "Counting Sort",
+                "Quick Sort",
+                "Radix Sort"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "graphs",
+      "name": "Graph Algorithms",
+      "prerequisites": [
+        "daa_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "graph_traversal",
+          "name": "Graph Traversal",
+          "questions": [
+            {
+              "id": "daa_graph_001",
+              "question": "Which data structure is used for BFS?",
+              "options": [
+                "Stack",
+                "Queue",
+                "Heap",
+                "Array"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_graph_002",
+              "question": "Which data structure is used for DFS?",
+              "options": [
+                "Queue",
+                "Stack",
+                "Heap",
+                "Hash Table"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_graph_003",
+              "question": "Time complexity of BFS?",
+              "options": [
+                "O(V)",
+                "O(E)",
+                "O(V + E)",
+                "O(V * E)"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_graph_004",
+              "question": "DFS can be used to detect?",
+              "options": [
+                "Shortest path",
+                "Cycles",
+                "Minimum spanning tree",
+                "Topological order"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_graph_005",
+              "question": "Which gives shortest path in unweighted graph?",
+              "options": [
+                "DFS",
+                "BFS",
+                "Dijkstra",
+                "All of these"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_graph_006",
+              "question": "Topological sorting is for?",
+              "options": [
+                "Any graph",
+                "Directed Acyclic Graph",
+                "Undirected graph",
+                "Cyclic graph"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dp",
+      "name": "Dynamic Programming",
+      "prerequisites": [
+        "daa_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "dp_basics",
+          "name": "DP Fundamentals",
+          "questions": [
+            {
+              "id": "daa_dp_001",
+              "question": "What is Dynamic Programming?",
+              "options": [
+                "Recursive approach",
+                "Optimization technique using memoization",
+                "Greedy approach",
+                "Brute force"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_dp_002",
+              "question": "What is memoization?",
+              "options": [
+                "Storing results to avoid recomputation",
+                "Recursion",
+                "Iteration",
+                "Optimization"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_dp_003",
+              "question": "Fibonacci using DP has complexity?",
+              "options": [
+                "O(2^n)",
+                "O(n)",
+                "O(n^2)",
+                "O(log n)"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_dp_004",
+              "question": "DP is used for?",
+              "options": [
+                "Finding any solution",
+                "Finding optimal solution",
+                "Sorting",
+                "Searching"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "daa_dp_005",
+              "question": "What are the two approaches in DP?",
+              "options": [
+                "Greedy and Brute force",
+                "Top-down and Bottom-up",
+                "DFS and BFS",
+                "Recursive and Iterative"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "daa_dp_006",
+              "question": "Which problem uses DP?",
+              "options": [
+                "Binary Search",
+                "Longest Common Subsequence",
+                "Quick Sort",
+                "Linear Search"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "daa_assess_001",
+      "question": "What does algorithm analysis involve?",
+      "options": [
+        "Writing code",
+        "Analyzing time and space complexity",
+        "Testing",
+        "Debugging"
+      ],
+      "correct": 1,
+      "topics": [
+        "daa_basics"
+      ]
+    },
+    {
+      "id": "daa_assess_002",
+      "question": "Big O notation represents?",
+      "options": [
+        "Best case",
+        "Average case",
+        "Worst case",
+        "All cases"
+      ],
+      "correct": 2,
+      "topics": [
+        "daa_basics"
+      ]
+    },
+    {
+      "id": "daa_assess_003",
+      "question": "Time complexity of linear search?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n^2)"
+      ],
+      "correct": 2,
+      "topics": [
+        "daa_basics"
+      ]
+    },
+    {
+      "id": "daa_assess_004",
+      "question": "Which sorting is fastest on average?",
+      "options": [
+        "Bubble Sort",
+        "Merge Sort",
+        "Selection Sort",
+        "Insertion Sort"
+      ],
+      "correct": 1,
+      "topics": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "daa_assess_005",
+      "question": "BFS uses which data structure?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Tree",
+        "Graph"
+      ],
+      "correct": 1,
+      "topics": [
+        "graphs"
+      ]
+    },
+    {
+      "id": "daa_assess_006",
+      "question": "What is divide and conquer?",
+      "options": [
+        "Greedy approach",
+        "Breaking problem into subproblems",
+        "Dynamic programming",
+        "Backtracking"
+      ],
+      "correct": 1,
+      "topics": [
+        "daa_basics"
+      ]
+    },
+    {
+      "id": "daa_assess_007",
+      "question": "Dynamic Programming is used for?",
+      "options": [
+        "Sorting",
+        "Optimization problems",
+        "Searching",
+        "Graph coloring"
+      ],
+      "correct": 1,
+      "topics": [
+        "dp"
+      ]
+    },
+    {
+      "id": "daa_assess_008",
+      "question": "Greedy algorithm always gives?",
+      "options": [
+        "Optimal solution",
+        "Locally optimal solution",
+        "Wrong solution",
+        "No solution"
+      ],
+      "correct": 1,
+      "topics": [
+        "daa_basics"
+      ]
+    },
+    {
+      "id": "daa_assess_009",
+      "question": "Dijkstra's algorithm finds?",
+      "options": [
+        "Minimum spanning tree",
+        "Shortest path",
+        "Maximum flow",
+        "Topological order"
+      ],
+      "correct": 1,
+      "topics": [
+        "graphs"
+      ]
+    },
+    {
+      "id": "daa_assess_010",
+      "question": "What is recursion?",
+      "options": [
+        "Loop",
+        "Function calling itself",
+        "Iteration",
+        "Sorting technique"
+      ],
+      "correct": 1,
+      "topics": [
+        "daa_basics"
+      ]
+    }
+  ]
+}

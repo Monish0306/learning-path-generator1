@@ -1,0 +1,562 @@
+{
+  "subject": "Java Programming",
+  "topics": [
+    {
+      "id": "java_basics",
+      "name": "Java Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "java_intro",
+          "name": "Introduction to Java",
+          "questions": [
+            {
+              "id": "java_intro_001",
+              "question": "Java is?",
+              "options": [
+                "Platform dependent",
+                "Platform independent",
+                "Hardware language",
+                "Assembly language"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_intro_002",
+              "question": "JVM stands for?",
+              "options": [
+                "Java Virtual Machine",
+                "Java Variable Method",
+                "Java Verified Module",
+                "None"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_intro_003",
+              "question": "Java program execution starts from?",
+              "options": [
+                "class",
+                "main() method",
+                "constructor",
+                "import"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_intro_004",
+              "question": "Java is?",
+              "options": [
+                "Procedural",
+                "Object-oriented",
+                "Functional",
+                "Scripting"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_intro_005",
+              "question": "Which is valid Java identifier?",
+              "options": [
+                "2variable",
+                "_variable",
+                "class",
+                "variable-name"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_intro_006",
+              "question": "Java file extension is?",
+              "options": [
+                ".class",
+                ".java",
+                ".jav",
+                ".j"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        },
+        {
+          "id": "data_types",
+          "name": "Data Types and Variables",
+          "questions": [
+            {
+              "id": "java_dt_001",
+              "question": "int size in Java?",
+              "options": [
+                "2 bytes",
+                "4 bytes",
+                "8 bytes",
+                "1 byte"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_dt_002",
+              "question": "char stores?",
+              "options": [
+                "String",
+                "Single character",
+                "Number",
+                "Boolean"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_dt_003",
+              "question": "Default value of boolean?",
+              "options": [
+                "true",
+                "false",
+                "0",
+                "null"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_dt_004",
+              "question": "String is?",
+              "options": [
+                "Primitive type",
+                "Class",
+                "Method",
+                "Variable"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_dt_005",
+              "question": "Which is NOT a primitive type?",
+              "options": [
+                "int",
+                "String",
+                "boolean",
+                "char"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_dt_006",
+              "question": "Type casting is?",
+              "options": [
+                "Creating types",
+                "Converting one type to another",
+                "Deleting types",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "java_oop",
+      "name": "Object-Oriented Programming",
+      "prerequisites": [
+        "java_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "classes_objects",
+          "name": "Classes and Objects",
+          "questions": [
+            {
+              "id": "java_class_001",
+              "question": "How to define a class?",
+              "options": [
+                "class ClassName {}",
+                "Class ClassName {}",
+                "define ClassName {}",
+                "object ClassName {}"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_class_002",
+              "question": "How to create object?",
+              "options": [
+                "ClassName obj = new ClassName();",
+                "obj = ClassName()",
+                "new obj ClassName",
+                "create obj"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_class_003",
+              "question": "Constructor is?",
+              "options": [
+                "Method",
+                "Special method to initialize object",
+                "Variable",
+                "Class"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_class_004",
+              "question": "Constructor name must be?",
+              "options": [
+                "Any name",
+                "Same as class name",
+                "init",
+                "constructor"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_class_005",
+              "question": "this keyword refers to?",
+              "options": [
+                "Class",
+                "Current object",
+                "Method",
+                "Variable"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_class_006",
+              "question": "Access modifier 'private' means?",
+              "options": [
+                "Accessible everywhere",
+                "Only within class",
+                "Within package",
+                "Within subclass"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "inheritance",
+          "name": "Inheritance",
+          "questions": [
+            {
+              "id": "java_inherit_001",
+              "question": "Inheritance uses which keyword?",
+              "options": [
+                "implements",
+                "extends",
+                "inherits",
+                "derives"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_inherit_002",
+              "question": "Superclass is also called?",
+              "options": [
+                "Child class",
+                "Parent class",
+                "Derived class",
+                "Sub class"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_inherit_003",
+              "question": "Java supports?",
+              "options": [
+                "Multiple inheritance with classes",
+                "Single inheritance with classes",
+                "No inheritance",
+                "Only interface inheritance"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_inherit_004",
+              "question": "super keyword is used to?",
+              "options": [
+                "Create object",
+                "Access parent class members",
+                "Define class",
+                "Delete object"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_inherit_005",
+              "question": "Method overriding is?",
+              "options": [
+                "Same method in same class",
+                "Same method signature in child class",
+                "Different methods",
+                "Constructor"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_inherit_006",
+              "question": "final class?",
+              "options": [
+                "Can be inherited",
+                "Cannot be inherited",
+                "Must be inherited",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "java_advanced",
+      "name": "Advanced Java Concepts",
+      "prerequisites": [
+        "java_oop"
+      ],
+      "subtopics": [
+        {
+          "id": "exception_handling",
+          "name": "Exception Handling",
+          "questions": [
+            {
+              "id": "java_except_001",
+              "question": "Exception handling uses?",
+              "options": [
+                "if-else",
+                "try-catch",
+                "switch",
+                "for"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "java_except_002",
+              "question": "finally block?",
+              "options": [
+                "Executes only if exception",
+                "Always executes",
+                "Never executes",
+                "Optional always"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_except_003",
+              "question": "throw keyword is used to?",
+              "options": [
+                "Handle exception",
+                "Explicitly throw exception",
+                "Catch exception",
+                "Define exception"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_except_004",
+              "question": "throws keyword is used in?",
+              "options": [
+                "try block",
+                "Method signature",
+                "catch block",
+                "finally block"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "java_except_005",
+              "question": "Checked exceptions are?",
+              "options": [
+                "Checked at runtime",
+                "Checked at compile time",
+                "Not checked",
+                "Optional"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "java_except_006",
+              "question": "NullPointerException is?",
+              "options": [
+                "Checked",
+                "Unchecked",
+                "Error",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "java_assess_001",
+      "question": "Java is platform independent because of?",
+      "options": [
+        "Compiler",
+        "JVM",
+        "Operating System",
+        "Hardware"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_basics"
+      ]
+    },
+    {
+      "id": "java_assess_002",
+      "question": "Main method signature?",
+      "options": [
+        "public void main()",
+        "public static void main(String[] args)",
+        "void main()",
+        "static main()"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_basics"
+      ]
+    },
+    {
+      "id": "java_assess_003",
+      "question": "Object is instance of?",
+      "options": [
+        "Method",
+        "Class",
+        "Variable",
+        "Package"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_oop"
+      ]
+    },
+    {
+      "id": "java_assess_004",
+      "question": "Inheritance keyword?",
+      "options": [
+        "implements",
+        "extends",
+        "inherits",
+        "super"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_oop"
+      ]
+    },
+    {
+      "id": "java_assess_005",
+      "question": "Exception handling uses?",
+      "options": [
+        "try-catch",
+        "if-else",
+        "switch",
+        "loops"
+      ],
+      "correct": 0,
+      "topics": [
+        "java_advanced"
+      ]
+    },
+    {
+      "id": "java_assess_006",
+      "question": "Which is primitive type?",
+      "options": [
+        "String",
+        "int",
+        "Array",
+        "Class"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_basics"
+      ]
+    },
+    {
+      "id": "java_assess_007",
+      "question": "Constructor has?",
+      "options": [
+        "Return type",
+        "No return type",
+        "void return",
+        "int return"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_oop"
+      ]
+    },
+    {
+      "id": "java_assess_008",
+      "question": "Access modifier for members visible everywhere?",
+      "options": [
+        "private",
+        "protected",
+        "public",
+        "default"
+      ],
+      "correct": 2,
+      "topics": [
+        "java_oop"
+      ]
+    },
+    {
+      "id": "java_assess_009",
+      "question": "Interface can have?",
+      "options": [
+        "Only abstract methods (before Java 8)",
+        "Only concrete methods",
+        "No methods",
+        "Private methods only"
+      ],
+      "correct": 0,
+      "topics": [
+        "java_oop"
+      ]
+    },
+    {
+      "id": "java_assess_010",
+      "question": "Array index starts from?",
+      "options": [
+        "1",
+        "0",
+        "-1",
+        "Any number"
+      ],
+      "correct": 1,
+      "topics": [
+        "java_basics"
+      ]
+    }
+  ]
+}

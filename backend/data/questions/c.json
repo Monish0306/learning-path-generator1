@@ -1,0 +1,727 @@
+{
+  "subject": "C Programming",
+  "topics": [
+    {
+      "id": "c_basics",
+      "name": "C Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "c_intro",
+          "name": "Introduction to C",
+          "questions": [
+            {
+              "id": "c_intro_001",
+              "question": "C is a?",
+              "options": [
+                "High-level language",
+                "Middle-level language",
+                "Low-level language",
+                "Assembly language"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_intro_002",
+              "question": "C program execution starts from?",
+              "options": [
+                "First line",
+                "main() function",
+                "Last line",
+                "Any function"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_intro_003",
+              "question": "printf() is used for?",
+              "options": [
+                "Input",
+                "Output",
+                "Declaration",
+                "Loop"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_intro_004",
+              "question": "scanf() is used for?",
+              "options": [
+                "Output",
+                "Input",
+                "File handling",
+                "Memory"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_intro_005",
+              "question": "Header file for input/output?",
+              "options": [
+                "stdlib.h",
+                "stdio.h",
+                "string.h",
+                "math.h"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_intro_006",
+              "question": "Comments in C use?",
+              "options": [
+                "#",
+                "//  or /* */",
+                "<!--",
+                "**"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        },
+        {
+          "id": "c_datatypes",
+          "name": "Data Types and Operators",
+          "questions": [
+            {
+              "id": "c_dt_001",
+              "question": "Size of char?",
+              "options": [
+                "1 byte",
+                "2 bytes",
+                "4 bytes",
+                "Depends on compiler"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_dt_002",
+              "question": "int stores?",
+              "options": [
+                "Decimal",
+                "Integer",
+                "Character",
+                "String"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_dt_003",
+              "question": "float is for?",
+              "options": [
+                "Integer",
+                "Floating-point number",
+                "Character",
+                "String"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_dt_004",
+              "question": "Format specifier for int?",
+              "options": [
+                "%f",
+                "%d",
+                "%c",
+                "%s"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_dt_005",
+              "question": "% operator is for?",
+              "options": [
+                "Division",
+                "Modulus",
+                "Percentage",
+                "Multiplication"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_dt_006",
+              "question": "++ operator?",
+              "options": [
+                "Decrement",
+                "Increment",
+                "Addition",
+                "Comparison"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_control",
+      "name": "Control Structures",
+      "prerequisites": [
+        "c_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "c_loops",
+          "name": "Loops",
+          "questions": [
+            {
+              "id": "c_loop_001",
+              "question": "for loop syntax?",
+              "options": [
+                "for(init; condition; increment)",
+                "for(condition)",
+                "for(init)",
+                "for(increment)"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_loop_002",
+              "question": "while loop checks condition?",
+              "options": [
+                "After execution",
+                "Before execution",
+                "Never",
+                "Always"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_loop_003",
+              "question": "do-while executes?",
+              "options": [
+                "Never",
+                "At least once",
+                "Only if condition true",
+                "Infinite times"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_loop_004",
+              "question": "break statement?",
+              "options": [
+                "Continues loop",
+                "Exits loop",
+                "Skips iteration",
+                "Pauses loop"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_loop_005",
+              "question": "continue statement?",
+              "options": [
+                "Exits loop",
+                "Skips current iteration",
+                "Restarts loop",
+                "Breaks loop"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_loop_006",
+              "question": "Infinite loop?",
+              "options": [
+                "for(;;)",
+                "while(1)",
+                "do{}while(1)",
+                "All of these"
+              ],
+              "correct": 3,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "c_conditions",
+          "name": "Conditional Statements",
+          "questions": [
+            {
+              "id": "c_cond_001",
+              "question": "if statement checks?",
+              "options": [
+                "Loop",
+                "Condition",
+                "Variable",
+                "Function"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_cond_002",
+              "question": "else executes when?",
+              "options": [
+                "if is true",
+                "if is false",
+                "Always",
+                "Never"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_cond_003",
+              "question": "switch case uses?",
+              "options": [
+                "Conditions",
+                "Multiple cases",
+                "Loops",
+                "Functions"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_cond_004",
+              "question": "default in switch?",
+              "options": [
+                "Required",
+                "Optional",
+                "First case",
+                "Last case always"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_cond_005",
+              "question": "Ternary operator syntax?",
+              "options": [
+                "condition ? true : false",
+                "if ? then : else",
+                "? condition",
+                "condition :"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_cond_006",
+              "question": "Nested if means?",
+              "options": [
+                "Multiple conditions",
+                "if inside if",
+                "if after if",
+                "if or if"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_functions",
+      "name": "Functions",
+      "prerequisites": [
+        "c_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "function_basics",
+          "name": "Function Fundamentals",
+          "questions": [
+            {
+              "id": "c_func_001",
+              "question": "Function is?",
+              "options": [
+                "Block of code",
+                "Variable",
+                "Data type",
+                "Operator"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_func_002",
+              "question": "return statement?",
+              "options": [
+                "Calls function",
+                "Returns value from function",
+                "Declares function",
+                "None"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_func_003",
+              "question": "void function returns?",
+              "options": [
+                "Integer",
+                "Nothing",
+                "Float",
+                "Character"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_func_004",
+              "question": "Function prototype declares?",
+              "options": [
+                "Function implementation",
+                "Function signature",
+                "Function call",
+                "Variables"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_func_005",
+              "question": "Recursion is?",
+              "options": [
+                "Loop",
+                "Function calling itself",
+                "Nested functions",
+                "Function pointer"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_func_006",
+              "question": "Parameters are?",
+              "options": [
+                "Function names",
+                "Values passed to function",
+                "Return values",
+                "Variables only"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c_pointers",
+      "name": "Pointers and Arrays",
+      "prerequisites": [
+        "c_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "pointers",
+          "name": "Pointers",
+          "questions": [
+            {
+              "id": "c_ptr_001",
+              "question": "Pointer stores?",
+              "options": [
+                "Value",
+                "Address",
+                "Data type",
+                "Function"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_ptr_002",
+              "question": "& operator?",
+              "options": [
+                "Value of",
+                "Address of",
+                "Size of",
+                "Type of"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_ptr_003",
+              "question": "* operator with pointer?",
+              "options": [
+                "Gets address",
+                "Gets value at address",
+                "Multiplies",
+                "Declares"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_ptr_004",
+              "question": "NULL pointer?",
+              "options": [
+                "Points to 0",
+                "Points to nothing",
+                "Invalid pointer",
+                "All of these"
+              ],
+              "correct": 3,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_ptr_005",
+              "question": "malloc() is for?",
+              "options": [
+                "Deallocation",
+                "Dynamic memory allocation",
+                "Static allocation",
+                "Pointer declaration"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_ptr_006",
+              "question": "free() is used to?",
+              "options": [
+                "Allocate memory",
+                "Deallocate memory",
+                "Copy memory",
+                "Move memory"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        },
+        {
+          "id": "arrays",
+          "name": "Arrays",
+          "questions": [
+            {
+              "id": "c_arr_001",
+              "question": "Array is?",
+              "options": [
+                "Single variable",
+                "Collection of same type elements",
+                "Function",
+                "Pointer"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_arr_002",
+              "question": "Array index starts from?",
+              "options": [
+                "1",
+                "0",
+                "-1",
+                "Any number"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_arr_003",
+              "question": "String is?",
+              "options": [
+                "Character array",
+                "Integer array",
+                "Function",
+                "Pointer"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "c_arr_004",
+              "question": "String ends with?",
+              "options": [
+                "\\n",
+                "\\0",
+                "EOF",
+                "NULL"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_arr_005",
+              "question": "2D array is?",
+              "options": [
+                "Array of arrays",
+                "Single array",
+                "Pointer",
+                "Structure"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "c_arr_006",
+              "question": "Array name is?",
+              "options": [
+                "Variable",
+                "Pointer to first element",
+                "Index",
+                "Size"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "c_assess_001",
+      "question": "C is?",
+      "options": [
+        "High-level only",
+        "Middle-level",
+        "Low-level only",
+        "Assembly"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_basics"
+      ]
+    },
+    {
+      "id": "c_assess_002",
+      "question": "printf() is for?",
+      "options": [
+        "Input",
+        "Output",
+        "Loop",
+        "Condition"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_basics"
+      ]
+    },
+    {
+      "id": "c_assess_003",
+      "question": "for loop has?",
+      "options": [
+        "Only condition",
+        "init; condition; increment",
+        "Only increment",
+        "No parts"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_control"
+      ]
+    },
+    {
+      "id": "c_assess_004",
+      "question": "Function returns value using?",
+      "options": [
+        "printf",
+        "return",
+        "scanf",
+        "break"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_functions"
+      ]
+    },
+    {
+      "id": "c_assess_005",
+      "question": "Pointer stores?",
+      "options": [
+        "Value",
+        "Address",
+        "Type",
+        "Name"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_pointers"
+      ]
+    },
+    {
+      "id": "c_assess_006",
+      "question": "Array index starts from?",
+      "options": [
+        "1",
+        "0",
+        "-1",
+        "10"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_pointers"
+      ]
+    },
+    {
+      "id": "c_assess_007",
+      "question": "while loop checks condition?",
+      "options": [
+        "After",
+        "Before",
+        "Never",
+        "Random"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_control"
+      ]
+    },
+    {
+      "id": "c_assess_008",
+      "question": "malloc() is for?",
+      "options": [
+        "Deletion",
+        "Dynamic allocation",
+        "Static allocation",
+        "Copying"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_pointers"
+      ]
+    },
+    {
+      "id": "c_assess_009",
+      "question": "void function returns?",
+      "options": [
+        "Integer",
+        "Nothing",
+        "Float",
+        "Character"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_functions"
+      ]
+    },
+    {
+      "id": "c_assess_010",
+      "question": "break statement?",
+      "options": [
+        "Continues",
+        "Exits loop",
+        "Skips",
+        "Pauses"
+      ],
+      "correct": 1,
+      "topics": [
+        "c_control"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Learning Path Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/enhancements.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav id="nav-menu" class="nav-menu hidden">
+        <button class="nav-close-btn" onclick="toggleMenu()" title="Close menu">✕</button>
+        <div class="nav-header">
+            <div class="nav-avatar" id="nav-avatar">M</div>
+            <div class="nav-user-info" id="nav-user-info">
+                <div class="nav-username">User</div>
+                <div class="nav-email">user@email.com</div>
+            </div>
+        </div>
+        <div class="nav-items">
+            <a class="nav-item" onclick="showDashboard()">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">My Profile</span>
+            </a>
+            <a class="nav-item" onclick="showMyLearning()">
+                <span class="nav-icon">📚</span>
+                <span class="nav-label">My Learning</span>
+            </a>
+            <a class="nav-item" onclick="showScheduler()">
+                <span class="nav-icon">📅</span>
+                <span class="nav-label">Study Schedule</span>
+            </a>
+            <a class="nav-item" onclick="showRevisionTracker()">
+                <span class="nav-icon">🔄</span>
+                <span class="nav-label">Revision Tracker</span>
+            </a>
+            <a class="nav-item" onclick="showAnalytics()">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Analytics</span>
+            </a>
+            <a class="nav-item" onclick="loadSubjects()">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Browse Subjects</span>
+            </a>
+            <a class="nav-item" onclick="showSettings()">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Settings</span>
+            </a>
+            <a class="nav-item" onclick="logout()">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-label">Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Menu Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle hidden" onclick="toggleMenu()">
+        ☰
+    </button>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="logo-container">
+                    <div class="logo-icon">🎓</div>
+                    <h1 class="logo-text">Learning Path Generator</h1>
+                </div>
+                <p class="hero-subtitle">Personalized learning powered by advanced algorithms</p>
+                <p class="hero-description">
+                    Get a custom learning path based on your current knowledge. 
+                    Our system uses DAA algorithms to create the optimal learning sequence just for you.
+                </p>
+                <button class="cta-button" onclick="showAuthScreen()">
+                    Get Started
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <span class="card-icon">🐍</span>
+                    <span class="card-text">Python</span>
+                </div>
+                <div class="floating-card card-2">
+                    <span class="card-icon">⚡</span>
+                    <span class="card-text">Algorithms</span>
+                </div>
+                <div class="floating-card card-3">
+                    <span class="card-icon">🤖</span>
+                    <span class="card-text">ML</span>
+                </div>
+                <div class="floating-card card-4">
+                    <span class="card-icon">🗄️</span>
+                    <span class="card-text">DBMS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Screen (Login/Signup) -->
+    <div id="auth-screen" class="screen">
+        <div class="auth-container">
+            <div class="auth-back-btn" onclick="showWelcome()">← Back</div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showLoginForm()">Login</button>
+                <button class="auth-tab" onclick="showSignupForm()">Sign Up</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form" onsubmit="return handleLogin(event)">
+                <h2>Welcome Back!</h2>
+                <p class="auth-subtitle">Login to continue your learning journey</p>
+                
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="login-password" required placeholder="Enter your password">
+                        <span id="login-password-toggle" class="password-toggle-icon" onclick="togglePasswordVisibility('login-password', 'login-password-toggle')" title="Show password">👁️‍🗨️</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    Login
+                    <span class="button-arrow">→</span>
+                </button>
+                
+                <p class="auth-switch">
+                    Don't have an account? <a onclick="showSignupForm()">Sign Up</a>
+                </p>
+            </form>
+            
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form hidden" onsubmit="return handleSignup(event)">
+                <h2>Create Account</h2>
+                <p class="auth-subtitle">Start your personalized learning journey</p>
+                
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required placeholder="John Doe">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-university">University / Institution</label>
+                    <input type="text" id="signup-university" required placeholder="MIT">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="signup-password" required placeholder="Create password (9+ chars, 1 upper, 1 lower, 1 special)">
+                        <span id="signup-password-toggle" class="password-toggle-icon" onclick="togglePasswordVisibility('signup-password', 'signup-password-toggle')" title="Show password">👁️‍🗨️</span>
+                    </div>
+                    <div id="password-validation" class="validation-feedback"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="signup-confirm-password" required placeholder="Confirm password">
+                        <span id="signup-confirm-password-toggle" class="password-toggle-icon" onclick="togglePasswordVisibility('signup-confirm-password', 'signup-confirm-password-toggle')" title="Show password">👁️‍🗨️</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    Create Account
+                    <span class="button-arrow">→</span>
+                </button>
+                
+                <p class="auth-switch">
+                    Already have an account? <a onclick="showLoginForm()">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Study Scheduler Screen -->
+    <div id="scheduler-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>📅 Smart Study Scheduler</h2>
+                <p>Create your personalized study schedule</p>
+            </div>
+            
+            <div class="scheduler-container">
+                <!-- Schedule Settings -->
+                <div class="schedule-settings">
+                    <h3>📝 Your Preferences</h3>
+                    
+                    <div class="setting-group">
+                        <label for="daily-hours">Daily Study Hours</label>
+                        <input type="number" id="daily-hours" min="1" max="12" value="2" />
+                        <small>How many hours can you study per day?</small>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="time-slot">Preferred Time Slot</label>
+                        <select id="time-slot">
+                            <option value="morning">🌅 Morning (6 AM - 12 PM)</option>
+                            <option value="afternoon">☀️ Afternoon (12 PM - 6 PM)</option>
+                            <option value="evening">🌆 Evening (6 PM - 9 PM)</option>
+                            <option value="night">🌙 Night (9 PM - 12 AM)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="days-per-week">Study Days Per Week</label>
+                        <input type="number" id="days-per-week" min="1" max="7" value="5" />
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="session-duration">Session Duration (minutes)</label>
+                        <select id="session-duration">
+                            <option value="30">30 minutes</option>
+                            <option value="45" selected>45 minutes</option>
+                            <option value="60">60 minutes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label for="exam-date">Exam/Deadline Date (optional)</label>
+                        <input type="date" id="exam-date" />
+                    </div>
+                    
+                    <button class="btn-primary" onclick="generateSchedule()">
+                        Generate My Schedule
+                    </button>
+                </div>
+                
+                <!-- Generated Schedule -->
+                <div class="generated-schedule" id="generated-schedule">
+                    <h3>📆 Your Personalized Schedule</h3>
+                    <div id="schedule-output">
+                        <p class="empty-state">Configure your preferences and click "Generate My Schedule"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revision Tracker Screen -->
+    <div id="revision-tracker-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>🔄 Forgetting Curve Revision Tracker</h2>
+                <p>Scientific spaced repetition system</p>
+            </div>
+            
+            <div class="revision-info-box">
+                <h3>🧠 How the Forgetting Curve Works</h3>
+                <p>Without revision, we forget 70% of what we learn within 24 hours. Our system schedules revisions at scientifically optimal intervals:</p>
+                <div class="revision-intervals">
+                    <div class="interval-card">
+                        <div class="interval-number">1st</div>
+                        <div class="interval-time">2 Days</div>
+                        <div class="interval-desc">First Revision</div>
+                    </div>
+                    <div class="interval-arrow">→</div>
+                    <div class="interval-card">
+                        <div class="interval-number">2nd</div>
+                        <div class="interval-time">7 Days</div>
+                        <div class="interval-desc">Second Revision</div>
+                    </div>
+                    <div class="interval-arrow">→</div>
+                    <div class="interval-card">
+                        <div class="interval-number">3rd</div>
+                        <div class="interval-time">21 Days</div>
+                        <div class="interval-desc">Third Revision</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="revision-tracker-content">
+                <div class="due-revisions">
+                    <h3>⚠️ Due for Revision</h3>
+                    <div id="due-revisions-list"></div>
+                </div>
+                
+                <div class="upcoming-revisions">
+                    <h3>📅 Upcoming Revisions</h3>
+                    <div id="upcoming-revisions-list"></div>
+                </div>
+                
+                <div class="completed-revisions">
+                    <h3>✅ Completed Revisions</h3>
+                    <div id="completed-revisions-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Screen -->
+    <div id="analytics-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>📊 Learning Analytics</h2>
+                <p>Detailed insights into your learning journey</p>
+            </div>
+            
+            <div id="analytics-content"></div>
+        </div>
+    </div>
+
+    <!-- My Learning Screen -->
+    <div id="my-learning-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>📚 My Learning</h2>
+                <p>All your active learning paths</p>
+            </div>
+            
+            <div id="my-learning-content"></div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>⚙️ Settings</h2>
+                <p>Customize your learning experience</p>
+            </div>
+            
+            <div class="settings-container">
+                <div class="setting-section">
+                    <h3>🎯 Learning Preferences</h3>
+                    <div class="setting-item">
+                        <label>Mastery Threshold</label>
+                        <input type="number" id="mastery-threshold" value="70" min="50" max="100" />
+                        <small>Minimum score to consider a topic mastered (%)</small>
+                    </div>
+                    <div class="setting-item">
+                        <label>Study Goal</label>
+                        <select id="study-goal">
+                            <option value="exam">Exam Preparation</option>
+                            <option value="interview">Interview Prep</option>
+                            <option value="general">General Learning</option>
+                            <option value="revision">Revision Only</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setting-section">
+                    <h3>🔔 Notifications</h3>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="revision-reminders" checked />
+                            Revision Reminders
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="daily-reminders" checked />
+                            Daily Study Reminders
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen">
+        <div class="container">
+            <div id="dashboard-content"></div>
+        </div>
+    </div>
+
+    <!-- Subject Selection Screen -->
+    <div id="subject-selection-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>Choose Your Subject</h2>
+                <p>Select the subject you want to learn</p>
+            </div>
+            <div id="subjects-grid" class="subjects-grid"></div>
+        </div>
+    </div>
+
+    <!-- Assessment Screen -->
+    <div id="assessment-screen" class="screen">
+        <div class="container">
+            <button class="back-button" onclick="backToSubjectSelection()">← Change Subject</button>
+            <div class="assessment-header">
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="assessment-progress"></div>
+                </div>
+                <div class="assessment-info">
+                    <h3 id="assessment-title">Initial Assessment</h3>
+                    <p id="question-counter">Question 1 of 10</p>
+                </div>
+            </div>
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h3 id="question-text" class="question-text"></h3>
+                    <div id="options-container" class="options-container"></div>
+                    <div class="quiz-actions">
+                        <button class="btn-secondary" onclick="previousQuestion()" id="prev-btn" disabled>Previous</button>
+                        <button class="btn-primary" onclick="nextQuestion()" id="next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="score-circle">
+                        <svg class="score-svg" width="200" height="200">
+                            <circle class="score-bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="score-progress" id="score-circle" cx="100" cy="100" r="90"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <span id="overall-score" class="score-value">0</span>
+                            <span class="score-label">Score</span>
+                        </div>
+                    </div>
+                    <h2>Assessment Complete!</h2>
+                    <p id="results-message">Here's your personalized learning path</p>
+                </div>
+                <div id="topic-scores" class="topic-scores"></div>
+                <div class="results-actions">
+                    <button class="btn-primary" onclick="showLearningPath()">View Learning Path</button>
+                    <button class="btn-secondary" onclick="restartAssessment()">Take Another Assessment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Path Screen -->
+    <div id="learning-path-screen" class="screen">
+        <div class="container">
+            <div class="screen-header">
+                <h2>Your Personalized Learning Path</h2>
+                <p id="learning-path-subtitle">Follow this path to master the subject</p>
+            </div>
+            <div id="learning-path-container" class="learning-path-container"></div>
+        </div>
+    </div>
+
+    <!-- Subtopic Quiz Screen -->
+    <div id="subtopic-quiz-screen" class="screen">
+        <div class="container">
+            <div class="quiz-header">
+                <button class="back-button" onclick="backToLearningPath()">← Back to Learning Path</button>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="quiz-progress"></div>
+                </div>
+                <div class="quiz-info">
+                    <h3 id="subtopic-title">Subtopic Quiz</h3>
+                    <p id="quiz-question-counter">Question 1 of 6</p>
+                </div>
+            </div>
+            <div class="quiz-container">
+                <div class="question-card">
+                    <h3 id="quiz-question-text" class="question-text"></h3>
+                    <div id="quiz-options-container" class="options-container"></div>
+                    <div class="quiz-actions">
+                        <button class="btn-secondary" onclick="previousQuizQuestion()" id="quiz-prev-btn" disabled>Previous</button>
+                        <button class="btn-primary" onclick="nextQuizQuestion()" id="quiz-next-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Results Screen -->
+    <div id="quiz-results-screen" class="screen">
+        <div class="container">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="score-circle">
+                        <svg class="score-svg" width="200" height="200">
+                            <circle class="score-bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="score-progress" id="quiz-score-circle" cx="100" cy="100" r="90"></circle>
+                        </svg>
+                        <div class="score-text">
+                            <span id="quiz-score" class="score-value">0</span>
+                            <span class="score-label">Score</span>
+                        </div>
+                    </div>
+                    <h2 id="quiz-result-title">Quiz Complete!</h2>
+                    <p id="quiz-result-message"></p>
+                </div>
+                <div id="quiz-answer-review" class="answer-review"></div>
+                <div class="results-actions">
+                    <button class="btn-primary" onclick="backToLearningPath()">Continue Learning</button>
+                    <button class="btn-secondary" onclick="retryQuiz()">Retry Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/profile.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/scheduler.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="/js/algorithms.js"></script>
+    <script src="js/reference-links.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

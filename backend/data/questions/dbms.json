@@ -1,0 +1,649 @@
+{
+  "subject": "Database Management Systems",
+  "topics": [
+    {
+      "id": "dbms_basics",
+      "name": "DBMS Fundamentals",
+      "prerequisites": [],
+      "subtopics": [
+        {
+          "id": "intro_dbms",
+          "name": "Introduction to DBMS",
+          "questions": [
+            {
+              "id": "dbms_intro_001",
+              "question": "What is DBMS?",
+              "options": [
+                "Database Management System",
+                "Data Backup Management System",
+                "Digital Business Management",
+                "None"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "dbms_intro_002",
+              "question": "Advantage of DBMS over file system?",
+              "options": [
+                "Data redundancy",
+                "Data inconsistency",
+                "Data integrity and security",
+                "More complexity"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "dbms_intro_003",
+              "question": "What is data independence?",
+              "options": [
+                "Data stored separately",
+                "Changes in schema don't affect application",
+                "Multiple databases",
+                "No relationships"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "dbms_intro_004",
+              "question": "Types of data independence?",
+              "options": [
+                "Logical only",
+                "Physical only",
+                "Logical and Physical",
+                "None"
+              ],
+              "correct": 2,
+              "difficulty": "medium"
+            },
+            {
+              "id": "dbms_intro_005",
+              "question": "Three-schema architecture has?",
+              "options": [
+                "Internal, Conceptual, External",
+                "Only Internal",
+                "Only External",
+                "Two levels"
+              ],
+              "correct": 0,
+              "difficulty": "hard"
+            },
+            {
+              "id": "dbms_intro_006",
+              "question": "DBMS provides?",
+              "options": [
+                "Only storage",
+                "Storage, retrieval, update of data",
+                "Only retrieval",
+                "Only backup"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        },
+        {
+          "id": "data_models",
+          "name": "Data Models",
+          "questions": [
+            {
+              "id": "dbms_model_001",
+              "question": "Relational model organizes data as?",
+              "options": [
+                "Trees",
+                "Tables",
+                "Graphs",
+                "Lists"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "dbms_model_002",
+              "question": "What is a tuple?",
+              "options": [
+                "Column",
+                "Row",
+                "Table",
+                "Database"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "dbms_model_003",
+              "question": "What is an attribute?",
+              "options": [
+                "Row",
+                "Column",
+                "Table",
+                "Key"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "dbms_model_004",
+              "question": "Primary key is?",
+              "options": [
+                "Can have NULL",
+                "Unique identifier",
+                "Can have duplicates",
+                "Optional"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "dbms_model_005",
+              "question": "Foreign key establishes?",
+              "options": [
+                "No relationship",
+                "Relationship between tables",
+                "Primary key",
+                "Unique constraint"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "dbms_model_006",
+              "question": "ER model uses?",
+              "options": [
+                "Tables only",
+                "Entities and Relationships",
+                "Only attributes",
+                "No structure"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sql",
+      "name": "SQL",
+      "prerequisites": [
+        "dbms_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "sql_basics",
+          "name": "SQL Basics",
+          "questions": [
+            {
+              "id": "sql_basic_001",
+              "question": "SQL stands for?",
+              "options": [
+                "Structured Query Language",
+                "Simple Query Language",
+                "Standard Question Language",
+                "System Query Language"
+              ],
+              "correct": 0,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sql_basic_002",
+              "question": "SELECT statement is used for?",
+              "options": [
+                "Inserting data",
+                "Retrieving data",
+                "Deleting data",
+                "Updating data"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sql_basic_003",
+              "question": "Which clause filters rows?",
+              "options": [
+                "SELECT",
+                "WHERE",
+                "FROM",
+                "ORDER BY"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sql_basic_004",
+              "question": "INSERT statement is for?",
+              "options": [
+                "Retrieving",
+                "Adding new records",
+                "Updating",
+                "Deleting"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sql_basic_005",
+              "question": "UPDATE statement modifies?",
+              "options": [
+                "Structure",
+                "Existing records",
+                "Adds records",
+                "Deletes records"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            },
+            {
+              "id": "sql_basic_006",
+              "question": "DELETE statement?",
+              "options": [
+                "Adds rows",
+                "Removes rows",
+                "Updates rows",
+                "Creates table"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        },
+        {
+          "id": "sql_advanced",
+          "name": "Advanced SQL",
+          "questions": [
+            {
+              "id": "sql_adv_001",
+              "question": "JOIN combines?",
+              "options": [
+                "Rows",
+                "Columns from multiple tables",
+                "Databases",
+                "Schemas"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "sql_adv_002",
+              "question": "INNER JOIN returns?",
+              "options": [
+                "All rows",
+                "Only matching rows",
+                "NULL rows",
+                "Duplicate rows"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "sql_adv_003",
+              "question": "GROUP BY is used with?",
+              "options": [
+                "WHERE",
+                "Aggregate functions",
+                "JOIN",
+                "UPDATE"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "sql_adv_004",
+              "question": "HAVING clause filters?",
+              "options": [
+                "Individual rows",
+                "Grouped rows",
+                "Tables",
+                "Databases"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "sql_adv_005",
+              "question": "What is a subquery?",
+              "options": [
+                "Main query",
+                "Query inside another query",
+                "JOIN",
+                "VIEW"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "sql_adv_006",
+              "question": "VIEW is?",
+              "options": [
+                "Physical table",
+                "Virtual table",
+                "Database",
+                "Schema"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "normalization",
+      "name": "Normalization",
+      "prerequisites": [
+        "dbms_basics"
+      ],
+      "subtopics": [
+        {
+          "id": "normal_forms",
+          "name": "Normal Forms",
+          "questions": [
+            {
+              "id": "norm_001",
+              "question": "Normalization is?",
+              "options": [
+                "Adding redundancy",
+                "Removing redundancy",
+                "Creating tables",
+                "Deleting tables"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "norm_002",
+              "question": "1NF requires?",
+              "options": [
+                "Multiple values in cells",
+                "Atomic values",
+                "No primary key",
+                "Redundancy"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "norm_003",
+              "question": "2NF eliminates?",
+              "options": [
+                "Transitive dependency",
+                "Partial dependency",
+                "All dependencies",
+                "No dependency"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "norm_004",
+              "question": "3NF eliminates?",
+              "options": [
+                "Partial dependency",
+                "Transitive dependency",
+                "All dependencies",
+                "Primary key"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "norm_005",
+              "question": "BCNF is?",
+              "options": [
+                "Lower than 3NF",
+                "Stricter than 3NF",
+                "Same as 2NF",
+                "No normalization"
+              ],
+              "correct": 1,
+              "difficulty": "hard"
+            },
+            {
+              "id": "norm_006",
+              "question": "Purpose of normalization?",
+              "options": [
+                "Increase redundancy",
+                "Minimize redundancy and dependency",
+                "Increase size",
+                "Decrease performance"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transactions",
+      "name": "Transactions",
+      "prerequisites": [
+        "sql"
+      ],
+      "subtopics": [
+        {
+          "id": "acid",
+          "name": "ACID Properties",
+          "questions": [
+            {
+              "id": "acid_001",
+              "question": "ACID stands for?",
+              "options": [
+                "Atomicity, Consistency, Isolation, Durability",
+                "Access, Control, Integration, Data",
+                "All, Complete, Integrated, Database",
+                "None"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "acid_002",
+              "question": "Atomicity means?",
+              "options": [
+                "Partial execution",
+                "All or nothing",
+                "Consistency",
+                "Isolation"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "acid_003",
+              "question": "Consistency ensures?",
+              "options": [
+                "Speed",
+                "Database remains in valid state",
+                "Isolation",
+                "Atomicity"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "acid_004",
+              "question": "Isolation means?",
+              "options": [
+                "Transactions execute independently",
+                "Fast execution",
+                "Permanent changes",
+                "Atomicity"
+              ],
+              "correct": 0,
+              "difficulty": "medium"
+            },
+            {
+              "id": "acid_005",
+              "question": "Durability ensures?",
+              "options": [
+                "Fast recovery",
+                "Changes persist after commit",
+                "Isolation",
+                "Consistency"
+              ],
+              "correct": 1,
+              "difficulty": "medium"
+            },
+            {
+              "id": "acid_006",
+              "question": "COMMIT makes changes?",
+              "options": [
+                "Temporary",
+                "Permanent",
+                "Partial",
+                "Rolled back"
+              ],
+              "correct": 1,
+              "difficulty": "easy"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "initialAssessment": [
+    {
+      "id": "dbms_assess_001",
+      "question": "DBMS stands for?",
+      "options": [
+        "Data Backup Management",
+        "Database Management System",
+        "Digital Business Management",
+        "None"
+      ],
+      "correct": 1,
+      "topics": [
+        "dbms_basics"
+      ]
+    },
+    {
+      "id": "dbms_assess_002",
+      "question": "Primary key is?",
+      "options": [
+        "Can be NULL",
+        "Unique identifier",
+        "Can have duplicates",
+        "Optional"
+      ],
+      "correct": 1,
+      "topics": [
+        "dbms_basics"
+      ]
+    },
+    {
+      "id": "dbms_assess_003",
+      "question": "SQL is used for?",
+      "options": [
+        "Programming",
+        "Database queries",
+        "Web development",
+        "Graphics"
+      ],
+      "correct": 1,
+      "topics": [
+        "sql"
+      ]
+    },
+    {
+      "id": "dbms_assess_004",
+      "question": "SELECT retrieves?",
+      "options": [
+        "Updates data",
+        "Data from tables",
+        "Deletes data",
+        "Creates tables"
+      ],
+      "correct": 1,
+      "topics": [
+        "sql"
+      ]
+    },
+    {
+      "id": "dbms_assess_005",
+      "question": "Normalization removes?",
+      "options": [
+        "Data",
+        "Redundancy",
+        "Tables",
+        "Keys"
+      ],
+      "correct": 1,
+      "topics": [
+        "normalization"
+      ]
+    },
+    {
+      "id": "dbms_assess_006",
+      "question": "ACID properties ensure?",
+      "options": [
+        "Speed",
+        "Reliability of transactions",
+        "Storage",
+        "Retrieval"
+      ],
+      "correct": 1,
+      "topics": [
+        "transactions"
+      ]
+    },
+    {
+      "id": "dbms_assess_007",
+      "question": "Foreign key creates?",
+      "options": [
+        "Primary key",
+        "Relationship between tables",
+        "Index",
+        "View"
+      ],
+      "correct": 1,
+      "topics": [
+        "dbms_basics"
+      ]
+    },
+    {
+      "id": "dbms_assess_008",
+      "question": "JOIN combines data from?",
+      "options": [
+        "One table",
+        "Multiple tables",
+        "Databases",
+        "Rows"
+      ],
+      "correct": 1,
+      "topics": [
+        "sql"
+      ]
+    },
+    {
+      "id": "dbms_assess_009",
+      "question": "1NF requires?",
+      "options": [
+        "Multiple values",
+        "Atomic values",
+        "No keys",
+        "Redundancy"
+      ],
+      "correct": 1,
+      "topics": [
+        "normalization"
+      ]
+    },
+    {
+      "id": "dbms_assess_010",
+      "question": "Transaction is?",
+      "options": [
+        "Single operation",
+        "Logical unit of work",
+        "Table",
+        "Query"
+      ],
+      "correct": 1,
+      "topics": [
+        "transactions"
+      ]
+    }
+  ]
+}
