@@ -1,26 +1,11 @@
 // ==================== USER DASHBOARD ====================
 
-function showDashboard() {
-    if (!currentState.userId) {
-        alert('Please log in first');
-        showAuthScreen();
-        return;
-    }
-    
-    const profile = loadUserProfile(currentState.userId) || currentState.userProfile;
-    
-    if (!profile) {
-        alert('Profile not found');
-        showAuthScreen();
-        return;
-    }
-    
-    displayDashboard(profile);
-    showScreen('dashboard-screen');
-}
-
 function displayDashboard(profile) {
     const container = document.getElementById('dashboard-content');
+    if (!container) {
+        console.error('❌ Dashboard content container not found');
+        return;
+    }
     
     // Calculate statistics
     const totalAssessments = profile.assessments.length;
@@ -132,7 +117,7 @@ function displayQuizHistory(quizzes) {
         return '<p class="empty-state">No quizzes attempted yet. Take your first quiz!</p>';
     }
     
-    const sorted = quizzes.slice(-10).reverse(); // Last 10 quizzes
+    const sorted = quizzes.slice(-10).reverse();
     
     return sorted.map(quiz => {
         const scoreClass = getScoreClass(parseFloat(quiz.score));
@@ -216,8 +201,17 @@ function displayWeakAreas(profile) {
     return `
         <div class="weak-areas-list">
             ${sorted.map((area, index) => {
-                // Get reference links for this weak topic
-                const refLinks = getReferenceLinks(area.subject, area.topic, area.topic);
+                // CRITICAL: Check if getReferenceLinks is available
+                let refLinks;
+                if (typeof window.getReferenceLinks === 'function') {
+                    refLinks = window.getReferenceLinks(area.subject, area.topic, area.topic);
+                } else {
+                    console.error('❌ getReferenceLinks is not defined!');
+                    refLinks = [
+                        { title: '📚 GeeksforGeeks', url: 'https://www.geeksforgeeks.org/' },
+                        { title: '📺 YouTube', url: 'https://www.youtube.com/' }
+                    ];
+                }
                 
                 return `
                 <div class="weak-area-item-enhanced">
@@ -262,7 +256,6 @@ function displayWeakAreas(profile) {
     `;
 }
 
-// Toggle visibility of reference links for weak areas
 function toggleWeakAreaResources(resourceId) {
     const resourcesDiv = document.getElementById(resourceId);
     const button = event.target;
@@ -281,68 +274,10 @@ function toggleWeakAreaResources(resourceId) {
     }
 }
 
-// Helper Functions
-function getScoreClass(score) {
-    if (score >= 75) return 'score-high';
-    if (score >= 50) return 'score-medium';
-    return 'score-low';
-}
-
-function formatDate(date) {
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 0) return 'Today';
-    if (diffDays === 1) return 'Yesterday';
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
-    return date.toLocaleDateString();
-}
-
-function formatSubjectName(subjectId) {
-    const names = {
-        'python': 'Python Programming',
-        'dsa': 'Design & Analysis of Algorithms',
-        'daa': 'Design & Analysis of Algorithms',
-        'ml': 'Machine Learning',
-        'ai': 'Artificial Intelligence',
-        'dbms': 'Database Management Systems',
-        'java': 'Java Programming',
-        'cpp': 'C++ Programming',
-        'c': 'C Programming'
-    };
-    return names[subjectId] || subjectId;
-}
-
-function formatTopicName(topicId) {
-    return topicId
-        .split('_')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-}
-
-function continueSubject(subject) {
-    currentState.currentSubject = subject;
-    
-    // Check if user has taken assessment
-    const profile = loadUserProfile(currentState.userId) || currentState.userProfile;
-    const hasAssessment = profile.assessments.some(a => a.subject === subject);
-    
-    if (hasAssessment) {
-        // Load existing learning path
-        showLearningPath();
-    } else {
-        // Start new assessment
-        startAssessment(subject, formatSubjectName(subject));
-    }
-}
-
 function practiceWeakTopic(subject, topic) {
     currentState.currentSubject = subject;
-    // Find and start quiz for weak topic
     alert(`Starting practice quiz for ${formatTopicName(topic)} in ${formatSubjectName(subject)}`);
-    // Navigate to quiz
     showLearningPath();
 }
+
+console.log('✅ dashboard.js loaded');

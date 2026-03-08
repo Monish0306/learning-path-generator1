@@ -1,36 +1,175 @@
-// ==================== SMART STUDY SCHEDULER ====================
-// Implements: Forgetting Curve + Spaced Repetition + Constraint-based Scheduling
+// ==================== SCHEDULER GENERATION ====================
+
+function generateSchedule() {
+    const profile = currentState.userProfile || loadUserProfile(currentState.userId);
+    if (!profile) {
+        alert('Profile not found');
+        return;
+    }
+    
+    // Get preferences from form
+    const dailyHours = parseInt(document.getElementById('daily-hours').value) || 2;
+    const timeSlot = document.getElementById('time-slot').value || 'morning';
+    const daysPerWeek = parseInt(document.getElementById('days-per-week').value) || 5;
+    const sessionDuration = parseInt(document.getElementById('session-duration').value) || 45;
+    
+    const examDateInput = document.getElementById('exam-date');
+    const examDate = examDateInput && examDateInput.value ? new Date(examDateInput.value) : null;
+    
+    const preferences = {
+        dailyStudyHours: dailyHours,
+        preferredTimeSlot: timeSlot,
+        daysPerWeek: daysPerWeek,
+        sessionDuration: sessionDuration
+    };
+    
+    // Create scheduler and generate schedule
+    const scheduler = new StudyScheduler(profile);
+    const schedule = scheduler.generateSchedule(preferences, examDate);
+    
+    // Display schedule
+    displayGeneratedSchedule(schedule);
+    
+    // Save preferences to profile
+    profile.preferences = preferences;
+    profile.studySchedule = schedule;
+    saveUserProfile(profile);
+}
+
+function displayGeneratedSchedule(scheduleData) {
+    const container = document.getElementById('schedule-output');
+    
+    if (!scheduleData || !scheduleData.schedule || scheduleData.schedule.length === 0) {
+        container.innerHTML = '<p class="empty-state">No schedule generated. Please check your preferences.</p>';
+        return;
+    }
+    
+    const summary = scheduleData.summary;
+    
+    let html = `
+        <div class="schedule-summary">
+            <h4>📊 Schedule Summary</h4>
+            <div class="summary-stats">
+                <div class="summary-stat">
+                    <span class="stat-value">${summary.totalDays}</span>
+                    <span class="stat-label">Days</span>
+                </div>
+                <div class="summary-stat">
+                    <span class="stat-value">${summary.totalSessions}</span>
+                    <span class="stat-label">Sessions</span>
+                </div>
+                <div class="summary-stat">
+                    <span class="stat-value">${summary.totalHours}h</span>
+                    <span class="stat-label">Total Time</span>
+                </div>
+                <div class="summary-stat">
+                    <span class="stat-value">${summary.averageSessionsPerDay}</span>
+                    <span class="stat-label">Avg/Day</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="schedule-timeline">
+            <h4>📅 Daily Schedule</h4>
+    `;
+    
+    scheduleData.schedule.forEach((day, index) => {
+        const date = new Date(day.date);
+        const dateStr = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        
+        html += `
+            <div class="schedule-day">
+                <div class="schedule-day-header">
+                    <span class="day-date">${dateStr}</span>
+                    <span class="day-total">${day.totalMinutes} mins total</span>
+                </div>
+                <div class="schedule-sessions">
+        `;
+        
+        day.sessions.forEach(session => {
+            const reasonClass = session.type === 'revision' ? 'revision' : 'learning';
+            html += `
+                <div class="schedule-session ${reasonClass}">
+                    <div class="session-header">
+                        <span class="session-topic">${formatTopicName(session.topic)}</span>
+                        <span class="session-time">${session.timeSlot} (${session.duration} min)</span>
+                    </div>
+                    <div class="session-details">
+                        <span class="session-tag">${session.taskType}</span>
+                        <span>${formatSubjectName(session.subject)}</span>
+                        <span>Priority: ${Math.round(session.priority)}</span>
+                    </div>
+                    <div class="session-reason">
+                        💡 ${session.reason}
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    
+    // Add revision schedule
+    if (scheduleData.revisionDates && scheduleData.revisionDates.length > 0) {
+        html += `
+            <div class="revision-schedule">
+                <h4>🔄 Upcoming Revisions (Forgetting Curve)</h4>
+                <div class="revision-list">
+        `;
+        
+        scheduleData.revisionDates.slice(0, 10).forEach(revision => {
+            const date = new Date(revision.date);
+            const dateStr = date.toLocaleDateString();
+            
+            html += `
+                <div class="revision-item upcoming">
+                    <div class="revision-info">
+                        <div class="revision-subject">${formatSubjectName(revision.subject)}</div>
+                        <div class="revision-topic">${formatTopicName(revision.topic)}</div>
+                        <div class="revision-date">📅 ${dateStr} - ${revision.reason}</div>
+                    </div>
+                    <span class="revision-number">R${revision.revisionNumber}</span>
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+            </div>
+        `;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ==================== STUDY SCHEDULER CLASS ====================
 
 class StudyScheduler {
     constructor(userProfile) {
         this.profile = userProfile;
-        this.forgettingCurveIntervals = [2, 7, 21]; // Days: 1st, 2nd, 3rd revision
-        this.revisionBuffer = 1; // Extra day buffer for flexibility
+        this.forgettingCurveIntervals = [2, 7, 21];
+        this.revisionBuffer = 1;
     }
     
-    /**
-     * Generate personalized study schedule
-     * @param {Object} preferences - User study preferences
-     * @param {Date} examDate - Target exam/deadline date
-     * @returns {Object} Complete study schedule
-     */
     generateSchedule(preferences, examDate = null) {
         const {
             dailyStudyHours = 2,
-            preferredTimeSlot = 'morning', // morning, afternoon, evening, night
+            preferredTimeSlot = 'morning',
             daysPerWeek = 7,
-            sessionDuration = 45 // minutes per session
+            sessionDuration = 45
         } = preferences;
         
-        // Get all topics that need study/revision
         const topicsToStudy = this.getTopicsRequiringAttention();
         
-        // Calculate available study days
         const today = new Date();
-        const deadline = examDate || this.addDays(today, 30); // Default 30 days
+        const deadline = examDate || this.addDays(today, 30);
         const availableDays = this.calculateAvailableDays(today, deadline, daysPerWeek);
         
-        // Allocate time slots
         const schedule = this.allocateTimeSlots(
             topicsToStudy,
             availableDays,
@@ -47,17 +186,9 @@ class StudyScheduler {
         };
     }
     
-    /**
-     * Identify topics needing study based on:
-     * 1. Weak performance (< 60%)
-     * 2. Never studied
-     * 3. Due for revision (Forgetting Curve)
-     * 4. Prerequisites for future topics
-     */
     getTopicsRequiringAttention() {
         const topics = [];
         
-        // Weak topics from assessments
         this.profile.assessments.forEach(assessment => {
             Object.entries(assessment.topicScores).forEach(([topic, score]) => {
                 if (score < 70) {
@@ -74,18 +205,12 @@ class StudyScheduler {
             });
         });
         
-        // Topics due for revision (Forgetting Curve)
         const revisionsNeeded = this.getRevisionsDue();
         topics.push(...revisionsNeeded);
         
-        // Sort by priority
         return topics.sort((a, b) => b.priority - a.priority);
     }
     
-    /**
-     * Calculate revision schedule using Forgetting Curve
-     * Revisions at: 2 days, 7 days, 21 days after initial study
-     */
     getRevisionsDue() {
         const today = new Date();
         const revisions = [];
@@ -95,7 +220,6 @@ class StudyScheduler {
             const daysSince = this.daysBetween(lastStudied, today);
             const score = parseFloat(quiz.score);
             
-            // Determine which revision interval
             let nextRevisionInterval = null;
             let revisionNumber = 0;
             
@@ -116,7 +240,7 @@ class StudyScheduler {
                     priority: this.calculatePriority(score, daysSince, 'revision'),
                     reason: `Long Time Since Last Revision (${daysSince} days ago)`,
                     currentMastery: score,
-                    estimatedTime: 30, // Revisions typically shorter
+                    estimatedTime: 30,
                     type: 'revision',
                     revisionNumber,
                     lastStudied: quiz.date
@@ -127,24 +251,17 @@ class StudyScheduler {
         return revisions;
     }
     
-    /**
-     * Calculate priority score for topic
-     * Higher score = higher priority
-     */
     calculatePriority(masteryScore, daysSinceLastStudy, type) {
         let priority = 0;
         
-        // Factor 1: Mastery level (lower mastery = higher priority)
-        const masteryFactor = (100 - masteryScore) / 10; // 0-10 points
+        const masteryFactor = (100 - masteryScore) / 10;
         priority += masteryFactor;
         
-        // Factor 2: Time since last study (for revisions)
         if (daysSinceLastStudy !== null) {
-            const timeFactor = Math.min(daysSinceLastStudy / 7, 5); // Max 5 points
+            const timeFactor = Math.min(daysSinceLastStudy / 7, 5);
             priority += timeFactor;
         }
         
-        // Factor 3: Type weight
         const typeWeights = {
             'weak': 3,
             'revision': 2,
@@ -155,25 +272,18 @@ class StudyScheduler {
         return priority;
     }
     
-    /**
-     * Estimate study time needed based on current mastery
-     */
     estimateStudyTime(currentMastery) {
-        if (currentMastery < 30) return 90; // 1.5 hours
-        if (currentMastery < 50) return 60; // 1 hour
-        if (currentMastery < 70) return 45; // 45 mins
-        return 30; // 30 mins for touch-up
+        if (currentMastery < 30) return 90;
+        if (currentMastery < 50) return 60;
+        if (currentMastery < 70) return 45;
+        return 30;
     }
     
-    /**
-     * Allocate topics to time slots
-     */
     allocateTimeSlots(topics, availableDays, dailyHours, sessionDuration, timeSlot) {
         const schedule = [];
         const sessionsPerDay = Math.floor((dailyHours * 60) / sessionDuration);
         
         let topicIndex = 0;
-        let currentDay = new Date();
         
         for (let day = 0; day < availableDays.length && topicIndex < topics.length; day++) {
             const daySchedule = {
@@ -197,7 +307,6 @@ class StudyScheduler {
                 daySchedule.totalMinutes += sessionTime;
                 topic.estimatedTime -= sessionTime;
                 
-                // Move to next topic if current is complete
                 if (topic.estimatedTime <= 0) {
                     topicIndex++;
                 }
@@ -211,16 +320,12 @@ class StudyScheduler {
         return schedule;
     }
     
-    /**
-     * Calculate revision schedule using Forgetting Curve
-     */
     calculateRevisionSchedule(schedule) {
         const revisionSchedule = [];
         
         schedule.forEach(day => {
             day.sessions.forEach(session => {
                 if (session.type === 'learning') {
-                    // Schedule 3 revisions based on forgetting curve
                     this.forgettingCurveIntervals.forEach((interval, index) => {
                         const revisionDate = this.addDays(new Date(day.date), interval);
                         revisionSchedule.push({
@@ -229,7 +334,7 @@ class StudyScheduler {
                             subject: session.subject,
                             revisionNumber: index + 1,
                             originalStudyDate: day.date,
-                            duration: 20, // Shorter for revision
+                            duration: 20,
                             reason: `Revision ${index + 1} (Forgetting Curve)`
                         });
                     });
@@ -240,9 +345,6 @@ class StudyScheduler {
         return revisionSchedule.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
     
-    /**
-     * Generate schedule summary
-     */
     generateScheduleSummary(schedule) {
         const totalDays = schedule.length;
         const totalSessions = schedule.reduce((sum, day) => sum + day.sessions.length, 0);
@@ -266,8 +368,6 @@ class StudyScheduler {
         };
     }
     
-    // ==================== HELPER FUNCTIONS ====================
-    
     getTimeSlotRange(slot, sessionNumber) {
         const slots = {
             'morning': ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM'],
@@ -288,7 +388,6 @@ class StudyScheduler {
             current.setDate(current.getDate() + 1);
         }
         
-        // If not studying all 7 days, filter to desired days
         if (daysPerWeek < 7) {
             return days.filter((_, index) => index % Math.ceil(7 / daysPerWeek) === 0);
         }
@@ -308,95 +407,4 @@ class StudyScheduler {
     }
 }
 
-// ==================== EXPLAINABLE LEARNING PATH ====================
-
-class ExplainableLearningPath {
-    constructor(learningPath, profile) {
-        this.path = learningPath;
-        this.profile = profile;
-    }
-    
-    /**
-     * Generate explanations for why each topic is in the path
-     */
-    explainTopic(topic) {
-        const explanations = [];
-        
-        // Check 1: Weak prerequisite
-        const topicScore = this.getTopicScore(topic.id);
-        if (topicScore !== null && topicScore < 60) {
-            explanations.push({
-                type: 'weak_prerequisite',
-                icon: '⚠️',
-                title: 'Weak Prerequisite Detected',
-                description: `You scored ${Math.round(topicScore)}% in this topic, which is below the required 70% mastery level.`,
-                priority: 'high'
-            });
-        }
-        
-        // Check 2: Required for future topics
-        const dependents = this.getTopicsThatRequire(topic.id);
-        if (dependents.length > 0) {
-            explanations.push({
-                type: 'required_for_future',
-                icon: '🔗',
-                title: 'Required for Future Topics',
-                description: `This topic is required to understand: ${dependents.join(', ')}`,
-                priority: 'medium'
-            });
-        }
-        
-        // Check 3: Time since last revision
-        const daysSinceStudy = this.getDaysSinceLastStudy(topic.id);
-        if (daysSinceStudy !== null && daysSinceStudy > 14) {
-            explanations.push({
-                type: 'revision_needed',
-                icon: '🔄',
-                title: 'Long Time Since Last Revision',
-                description: `You last studied this topic ${daysSinceStudy} days ago. Regular revision prevents forgetting.`,
-                priority: 'medium'
-            });
-        }
-        
-        // Check 4: High importance
-        if (topic.prerequisites && topic.prerequisites.length === 0) {
-            explanations.push({
-                type: 'foundation',
-                icon: '🏗️',
-                title: 'Foundation Topic',
-                description: 'This is a fundamental topic with no prerequisites. It\'s essential for building advanced knowledge.',
-                priority: 'high'
-            });
-        }
-        
-        return explanations;
-    }
-    
-    getTopicScore(topicId) {
-        for (const assessment of this.profile.assessments) {
-            if (assessment.topicScores[topicId] !== undefined) {
-                return assessment.topicScores[topicId];
-            }
-        }
-        return null;
-    }
-    
-    getTopicsThatRequire(topicId) {
-        const dependents = [];
-        this.path.forEach(topic => {
-            if (topic.prerequisites && topic.prerequisites.includes(topicId)) {
-                dependents.push(topic.name);
-            }
-        });
-        return dependents;
-    }
-    
-    getDaysSinceLastStudy(topicId) {
-        const quizzes = this.profile.quizHistory.filter(q => q.topic === topicId);
-        if (quizzes.length === 0) return null;
-        
-        const lastQuiz = quizzes.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
-        const daysDiff = Math.floor((new Date() - new Date(lastQuiz.date)) / (1000 * 60 * 60 * 24));
-        return daysDiff;
-    }
-}
+console.log('✅ scheduler.js loaded');
