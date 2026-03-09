@@ -1,5 +1,7 @@
 // ==================== GLOBAL STATE ====================
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000'
+    : 'https://learning-path-generator1.onrender.com';
 
 let currentState = {
     userId: null,
@@ -58,10 +60,10 @@ async function apiCall(endpoint, method = 'GET', data = null) {
     }
 
     try {
-        console.log(`🌐 API Call: ${method} ${endpoint}`);
+        console.log(`🌐 API Call: ${method} ${API_URL}${endpoint}`);
         if (data) console.log('📦 Request data:', data);
         
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        const response = await fetch(`${API_URL}${endpoint}`, options);
         
         console.log(`📡 Response status: ${response.status}`);
         
@@ -112,7 +114,7 @@ function backToSubjectSelection() {
 async function loadSubjects() {
     try {
         showLoading();
-        const subjects = await apiCall('/subjects');
+        const subjects = await apiCall('/api/subjects');
         
         const subjectsGrid = document.getElementById('subjects-grid');
         if (subjectsGrid) {
@@ -145,7 +147,7 @@ async function startAssessment(subjectId, subjectName) {
         showLoading();
         currentState.currentSubject = subjectId;
         
-        const data = await apiCall('/assessment/start', 'POST', {
+        const data = await apiCall('/api/assessment/start', 'POST', {
             userId: currentState.userId,
             subject: subjectId
         });
@@ -266,7 +268,7 @@ async function submitAssessment() {
             selectedOption: currentState.userAnswers[index]
         }));
         
-        const results = await apiCall('/assessment/submit', 'POST', {
+        const results = await apiCall('/api/assessment/submit', 'POST', {
             userId: currentState.userId,
             subject: currentState.currentSubject,
             answers: answers
@@ -456,6 +458,189 @@ function restartAssessment() {
     loadSubjects();
 }
 
+// ==================== SUBTOPIC QUIZ FUNCTIONS ====================
+
+async function startSubtopicQuiz(topicId, subtopicId, subtopicName) {
+    try {
+        showLoading();
+        currentState.currentTopic = topicId;
+        currentState.currentSubtopic = subtopicId;
+        
+        const data = await apiCall('/api/quiz/subtopic', 'POST', {
+            userId: currentState.userId,
+            subject: currentState.currentSubject,
+            topicId: topicId,
+            subtopicId: subtopicId
+        });
+        
+        currentState.currentQuestions = data.questions;
+        currentState.currentQuestionIndex = 0;
+        currentState.userAnswers = new Array(data.questions.length).fill(null);
+        
+        const title = document.getElementById('subtopic-quiz-title');
+        if (title) {
+            title.textContent = `${subtopicName} - Quiz`;
+        }
+        
+        displaySubtopicQuestion();
+        showScreen('subtopic-quiz-screen');
+    } catch (error) {
+        console.error('Error starting subtopic quiz:', error);
+        alert('Error loading quiz. Please try again.');
+    } finally {
+        hideLoading();
+    }
+}
+
+function displaySubtopicQuestion() {
+    const question = currentState.currentQuestions[currentState.currentQuestionIndex];
+    const totalQuestions = currentState.currentQuestions.length;
+    const currentIndex = currentState.currentQuestionIndex;
+    
+    const progress = ((currentIndex + 1) / totalQuestions) * 100;
+    const progressBar = document.getElementById('subtopic-quiz-progress');
+    if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+    }
+    
+    const counter = document.getElementById('subtopic-question-counter');
+    if (counter) {
+        counter.textContent = `Question ${currentIndex + 1} of ${totalQuestions}`;
+    }
+    
+    const questionText = document.getElementById('subtopic-question-text');
+    if (questionText) {
+        questionText.textContent = question.question;
+    }
+    
+    const optionsContainer = document.getElementById('subtopic-options-container');
+    if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        
+        question.options.forEach((option, index) => {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option';
+            if (currentState.userAnswers[currentIndex] === index) {
+                optionDiv.classList.add('selected');
+            }
+            optionDiv.textContent = option;
+            optionDiv.onclick = () => selectSubtopicOption(index);
+            optionsContainer.appendChild(optionDiv);
+        });
+    }
+    
+    const prevBtn = document.getElementById('subtopic-prev-btn');
+    if (prevBtn) {
+        prevBtn.disabled = currentIndex === 0;
+    }
+    
+    const nextBtn = document.getElementById('subtopic-next-btn');
+    if (nextBtn) {
+        if (currentIndex === totalQuestions - 1) {
+            nextBtn.textContent = 'Submit Quiz';
+        } else {
+            nextBtn.textContent = 'Next';
+        }
+    }
+}
+
+function selectSubtopicOption(optionIndex) {
+    currentState.userAnswers[currentState.currentQuestionIndex] = optionIndex;
+    
+    const options = document.querySelectorAll('#subtopic-options-container .option');
+    options.forEach((option, index) => {
+        if (index === optionIndex) {
+            option.classList.add('selected');
+        } else {
+            option.classList.remove('selected');
+        }
+    });
+}
+
+function previousSubtopicQuestion() {
+    if (currentState.currentQuestionIndex > 0) {
+        currentState.currentQuestionIndex--;
+        displaySubtopicQuestion();
+    }
+}
+
+function nextSubtopicQuestion() {
+    const currentIndex = currentState.currentQuestionIndex;
+    const totalQuestions = currentState.currentQuestions.length;
+    
+    if (currentState.userAnswers[currentIndex] === null) {
+        alert('Please select an answer before proceeding.');
+        return;
+    }
+    
+    if (currentIndex < totalQuestions - 1) {
+        currentState.currentQuestionIndex++;
+        displaySubtopicQuestion();
+    } else {
+        submitSubtopicQuiz();
+    }
+}
+
+async function submitSubtopicQuiz() {
+    try {
+        showLoading();
+        
+        const answers = currentState.currentQuestions.map((question, index) => ({
+            questionId: question.id,
+            selectedOption: currentState.userAnswers[index]
+        }));
+        
+        const results = await apiCall('/api/quiz/submit', 'POST', {
+            userId: currentState.userId,
+            subject: currentState.currentSubject,
+            topicId: currentState.currentTopic,
+            subtopicId: currentState.currentSubtopic,
+            answers: answers
+        });
+        
+        displaySubtopicQuizResults(results);
+        showScreen('quiz-results-screen');
+    } catch (error) {
+        console.error('Error submitting quiz:', error);
+        alert('Error submitting quiz. Please try again.');
+    } finally {
+        hideLoading();
+    }
+}
+
+function displaySubtopicQuizResults(results) {
+    const scoreValue = parseFloat(results.score);
+    
+    const scoreDisplay = document.getElementById('quiz-score');
+    if (scoreDisplay) {
+        scoreDisplay.textContent = Math.round(scoreValue) + '%';
+    }
+    
+    const correctDisplay = document.getElementById('quiz-correct');
+    if (correctDisplay) {
+        correctDisplay.textContent = `${results.correct} / ${results.total}`;
+    }
+    
+    const message = document.getElementById('quiz-results-message');
+    if (message) {
+        if (results.passed) {
+            message.textContent = '🎉 Great job! You passed this quiz!';
+            message.className = 'quiz-message success';
+        } else {
+            message.textContent = '📚 Keep practicing! Review the materials and try again.';
+            message.className = 'quiz-message needs-work';
+        }
+    }
+}
+
+function backToLearningPath() {
+    currentState.currentQuestions = [];
+    currentState.currentQuestionIndex = 0;
+    currentState.userAnswers = [];
+    
+    showLearningPath();
+}
+
 // ==================== HELPER FUNCTIONS ====================
 
 function formatTopicName(topicId) {
@@ -518,6 +703,7 @@ function continueSubject(subject) {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🎓 Learning Path Generator Initialized');
+    console.log('🌐 API URL:', API_URL);
     showWelcome();
 });
 
