@@ -1,16 +1,13 @@
 # Dependencies
 node_modules/
-package-lock.json
+npm-debug.log
+yarn-error.log
 
 # Environment variables
 .env
 .env.local
 
-# Logs
-*.log
-npm-debug.log*
-
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
@@ -18,5 +15,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Vercel
-.vercel
+# Logs
+logs/
+*.log

@@ -64,6 +64,15 @@ function generateUniqueQuestions(questions, count, usedQuestionIds = new Set()) 
 
 // API Routes
 
+// Health check endpoint for Render (IMPORTANT!)
+app.get('/health', (req, res) => {
+    res.status(200).json({ 
+        status: 'OK', 
+        message: 'Server is running',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Get all available subjects
 app.get('/api/subjects', (req, res) => {
     const subjects = [
@@ -433,8 +442,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+// Start server - IMPORTANT: Listen on 0.0.0.0 for Render
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📚 Learning Path Generator is ready!`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
