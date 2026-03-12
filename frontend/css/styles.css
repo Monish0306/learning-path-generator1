@@ -2742,3 +2742,20 @@ Add these styles to your CSS file:
         font-size: 1.5rem;
     }
 }
+/* FIX: Difficulty Card Text Visibility */
+.difficulty-card h2 {
+    color: #1a1a1a !important;
+    font-weight: 700;
+}
+
+.difficulty-card .difficulty-description {
+    color: #4a5568 !important;
+}
+
+.difficulty-card .difficulty-features li {
+    color: #2d3748 !important;
+}
+
+.difficulty-card.recommended h2 {
+    color: #1a1a1a !important;
+}
