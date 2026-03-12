@@ -2496,3 +2496,249 @@ body {
     font-weight: 600;
     font-size: 1.1rem;
 }
+
+
+/*
+Add these styles to your CSS file:
+
+.difficulty-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.difficulty-badge.basic {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    color: white;
+}
+
+.difficulty-badge.medium {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.difficulty-badge.advanced {
+    background: linear-gradient(135deg, #f87171, #dc2626);
+    color: white;
+}
+
+.ai-generated-badge {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+*/
+/* ==================== DIFFICULTY SELECTION STYLES ==================== */
+/* Add these styles to your styles.css file */
+
+/* Difficulty Selection Screen */
+.difficulty-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.difficulty-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.difficulty-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.difficulty-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.difficulty-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 3px solid transparent;
+}
+
+.difficulty-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: var(--primary-color);
+}
+
+.difficulty-card.recommended {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+}
+
+.recommended-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.difficulty-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.difficulty-card h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.difficulty-description {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.difficulty-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.difficulty-features li {
+    padding: 0.5rem 0;
+    color: var(--text-medium);
+    font-size: 0.9rem;
+}
+
+.difficulty-level {
+    margin-top: 1rem;
+}
+
+.level-bar {
+    background: #e0e0e0;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.level-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.level-fill.basic {
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+}
+
+.level-fill.medium {
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+}
+
+.level-fill.advanced {
+    background: linear-gradient(90deg, #f87171, #dc2626);
+}
+
+.difficulty-footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* ==================== DIFFICULTY BADGES ==================== */
+
+.difficulty-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.difficulty-badge.basic {
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    color: white;
+}
+
+.difficulty-badge.medium {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+}
+
+.difficulty-badge.advanced {
+    background: linear-gradient(135deg, #f87171, #dc2626);
+    color: white;
+}
+
+/* ==================== AI GENERATION BADGE ==================== */
+
+.ai-generated-badge {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+@media (max-width: 768px) {
+    .difficulty-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .difficulty-header h1 {
+        font-size: 2rem;
+    }
+    
+    .difficulty-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .difficulty-icon {
+        font-size: 2.5rem;
+    }
+    
+    .difficulty-card h2 {
+        font-size: 1.5rem;
+    }
+}

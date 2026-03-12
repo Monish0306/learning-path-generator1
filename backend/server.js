@@ -1,8 +1,12 @@
+// Load environment variables - MUST BE FIRST!
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
+const { generateAssessmentQuestions, generateSubtopicQuestions } = require('./services/groq');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,7 +19,10 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 // Store for user sessions (in production, use a proper database)
 const userSessions = new Map();
 
-// Utility function to load question data
+// Cache for generated questions to avoid re-generating during same session
+const questionCache = new Map();
+
+// FIXED: Utility function to load question data (fallback for basic level or when AI fails)
 function loadQuestionData(subject) {
     const subjectMap = {
         'python': 'python.json',
@@ -34,6 +41,13 @@ function loadQuestionData(subject) {
     }
 
     const filePath = path.join(__dirname, 'data', 'questions', filename);
+    
+    // Check if file exists
+    if (!fs.existsSync(filePath)) {
+        console.warn(`⚠️ Question file not found: ${filePath}`);
+        return null;
+    }
+    
     const data = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(data);
 }
@@ -64,11 +78,12 @@ function generateUniqueQuestions(questions, count, usedQuestionIds = new Set()) 
 
 // API Routes
 
-// Health check endpoint for Render (IMPORTANT!)
+// Health check endpoint for Render
 app.get('/health', (req, res) => {
     res.status(200).json({ 
         status: 'OK', 
         message: 'Server is running',
+        groqEnabled: !!process.env.GROQ_API_KEY,
         timestamp: new Date().toISOString()
     });
 });
@@ -88,26 +103,43 @@ app.get('/api/subjects', (req, res) => {
     res.json(subjects);
 });
 
-// Start initial assessment
-app.post('/api/assessment/start', (req, res) => {
+// Start initial assessment with difficulty level
+app.post('/api/assessment/start', async (req, res) => {
     try {
-        const { userId, subject } = req.body;
+        const { userId, subject, difficulty } = req.body;
         
         if (!userId || !subject) {
             return res.status(400).json({ error: 'Missing userId or subject' });
         }
 
-        const questionData = loadQuestionData(subject);
+        // Default to 'medium' if difficulty not specified
+        const selectedDifficulty = difficulty || 'medium';
         
-        // Get initial assessment questions
-        const assessmentQuestions = questionData.initialAssessment || [];
+        console.log(`📝 Starting ${selectedDifficulty} assessment for ${subject}`);
+
+        let selectedQuestions = [];
+
+        // Check if Groq API key is available
+        const hasGroqKey = !!process.env.GROQ_API_KEY;
         
-        if (assessmentQuestions.length === 0) {
-            return res.status(404).json({ error: 'No assessment questions found for this subject' });
+        if (hasGroqKey) {
+            try {
+                // Generate questions using Groq AI
+                console.log(`🤖 Using Groq AI for ${selectedDifficulty} level questions`);
+                selectedQuestions = await generateAssessmentQuestions(subject, selectedDifficulty, 10);
+            } catch (groqError) {
+                console.error('❌ Groq generation failed, falling back to question bank:', groqError);
+                // Fall back to question bank
+                selectedQuestions = getFallbackQuestions(subject, selectedDifficulty);
+            }
+        } else {
+            console.log('📚 Using question bank (Groq API key not configured)');
+            selectedQuestions = getFallbackQuestions(subject, selectedDifficulty);
         }
 
-        // Shuffle and select questions
-        const selectedQuestions = shuffleArray(assessmentQuestions).slice(0, 10);
+        if (selectedQuestions.length === 0) {
+            return res.status(404).json({ error: 'No questions available for this subject' });
+        }
         
         // Initialize user session
         if (!userSessions.has(userId)) {
@@ -120,7 +152,9 @@ app.post('/api/assessment/start', (req, res) => {
             topicScores: {},
             completedTopics: new Set(),
             learningPath: [],
-            currentAssessment: selectedQuestions.map(q => q.id)
+            currentAssessment: selectedQuestions.map(q => q.id),
+            currentQuestions: selectedQuestions, // Store full questions for grading
+            difficulty: selectedDifficulty
         };
 
         // Return questions without correct answers
@@ -132,7 +166,9 @@ app.post('/api/assessment/start', (req, res) => {
 
         res.json({
             questions: questionsForClient,
-            totalQuestions: selectedQuestions.length
+            totalQuestions: selectedQuestions.length,
+            difficulty: selectedDifficulty,
+            generatedByAI: hasGroqKey
         });
 
     } catch (error) {
@@ -141,8 +177,29 @@ app.post('/api/assessment/start', (req, res) => {
     }
 });
 
+// Helper function to get fallback questions from question bank
+function getFallbackQuestions(subject, difficulty) {
+    const questionData = loadQuestionData(subject);
+    
+    if (!questionData || !questionData.initialAssessment) {
+        return [];
+    }
+
+    let questions = questionData.initialAssessment || [];
+    
+    // Filter by difficulty if the question bank has difficulty tags
+    if (difficulty && questions.some(q => q.difficulty)) {
+        const filtered = questions.filter(q => q.difficulty === difficulty);
+        if (filtered.length >= 10) {
+            questions = filtered;
+        }
+    }
+    
+    return shuffleArray(questions).slice(0, 10);
+}
+
 // Submit assessment and get learning path
-app.post('/api/assessment/submit', (req, res) => {
+app.post('/api/assessment/submit', async (req, res) => {
     try {
         const { userId, subject, answers } = req.body;
 
@@ -150,32 +207,31 @@ app.post('/api/assessment/submit', (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        const questionData = loadQuestionData(subject);
         const userSession = userSessions.get(userId)?.[subject];
 
         if (!userSession) {
             return res.status(400).json({ error: 'No active session found' });
         }
 
+        // Get stored questions from session
+        const sessionQuestions = userSession.currentQuestions || [];
+
         // Calculate scores for each topic
         const topicScores = {};
-        const assessmentQuestions = questionData.initialAssessment;
-
-        answers.forEach((answer, index) => {
-            const question = assessmentQuestions.find(q => q.id === answer.questionId);
+        
+        answers.forEach((answer) => {
+            const question = sessionQuestions.find(q => q.id === answer.questionId);
             if (question) {
                 const isCorrect = answer.selectedOption === question.correct;
-                const topics = Array.isArray(question.topics) ? question.topics : [question.topics];
+                const topic = question.topic || 'general';
                 
-                topics.forEach(topic => {
-                    if (!topicScores[topic]) {
-                        topicScores[topic] = { correct: 0, total: 0 };
-                    }
-                    topicScores[topic].total++;
-                    if (isCorrect) {
-                        topicScores[topic].correct++;
-                    }
-                });
+                if (!topicScores[topic]) {
+                    topicScores[topic] = { correct: 0, total: 0 };
+                }
+                topicScores[topic].total++;
+                if (isCorrect) {
+                    topicScores[topic].correct++;
+                }
             }
         });
 
@@ -186,16 +242,29 @@ app.post('/api/assessment/submit', (req, res) => {
             topicPercentages[topic] = (score.correct / score.total) * 100;
         });
 
-        // Generate learning path using topological sort
-        const learningPath = generateLearningPath(questionData, topicPercentages);
+        // Generate learning path
+        const questionData = loadQuestionData(subject);
+        let learningPath = [];
+        
+        if (questionData && questionData.topics) {
+            learningPath = generateLearningPath(questionData, topicPercentages);
+        } else {
+            // If no question data, create basic learning path from topics
+            learningPath = Object.keys(topicPercentages).map((topic, index) => ({
+                id: topic,
+                name: formatTopicName(topic),
+                score: topicPercentages[topic],
+                subtopics: []
+            }));
+        }
 
         // Update user session
         userSession.topicScores = topicPercentages;
         userSession.learningPath = learningPath;
 
         // Calculate overall score
-        const totalCorrect = answers.filter((answer, index) => {
-            const question = assessmentQuestions.find(q => q.id === answer.questionId);
+        const totalCorrect = answers.filter((answer) => {
+            const question = sessionQuestions.find(q => q.id === answer.questionId);
             return question && answer.selectedOption === question.correct;
         }).length;
 
@@ -281,31 +350,57 @@ function generateLearningPath(questionData, topicScores) {
     return result;
 }
 
-// Get quiz for a specific subtopic
-app.post('/api/quiz/subtopic', (req, res) => {
+// Get quiz for a specific subtopic with difficulty
+app.post('/api/quiz/subtopic', async (req, res) => {
     try {
-        const { userId, subject, topicId, subtopicId } = req.body;
+        const { userId, subject, topicId, subtopicId, difficulty } = req.body;
 
         if (!userId || !subject || !topicId || !subtopicId) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        const questionData = loadQuestionData(subject);
-        const topic = questionData.topics.find(t => t.id === topicId);
+        const selectedDifficulty = difficulty || 'medium';
+        
+        console.log(`📝 Starting ${selectedDifficulty} subtopic quiz for ${subtopicId}`);
 
-        if (!topic) {
-            return res.status(404).json({ error: 'Topic not found' });
-        }
+        let quizQuestions = [];
+        const hasGroqKey = !!process.env.GROQ_API_KEY;
 
-        let subtopic = null;
-        for (const st of topic.subtopics) {
-            if (st.id === subtopicId) {
-                subtopic = st;
-                break;
+        if (hasGroqKey) {
+            try {
+                // Get topic and subtopic names for better context
+                const questionData = loadQuestionData(subject);
+                let topicName = topicId;
+                let subtopicName = subtopicId;
+                
+                if (questionData && questionData.topics) {
+                    const topic = questionData.topics.find(t => t.id === topicId);
+                    if (topic) {
+                        topicName = topic.name;
+                        const subtopic = topic.subtopics?.find(st => st.id === subtopicId);
+                        if (subtopic) {
+                            subtopicName = subtopic.name;
+                        }
+                    }
+                }
+
+                console.log(`🤖 Generating AI questions for ${subtopicName} using Groq`);
+                quizQuestions = await generateSubtopicQuestions(
+                    subject,
+                    topicName,
+                    subtopicName,
+                    selectedDifficulty,
+                    6
+                );
+            } catch (groqError) {
+                console.error('❌ Groq failed, using question bank:', groqError);
+                quizQuestions = getFallbackSubtopicQuestions(subject, topicId, subtopicId, selectedDifficulty);
             }
+        } else {
+            quizQuestions = getFallbackSubtopicQuestions(subject, topicId, subtopicId, selectedDifficulty);
         }
 
-        if (!subtopic || !subtopic.questions || subtopic.questions.length === 0) {
+        if (quizQuestions.length === 0) {
             return res.status(404).json({ error: 'No questions found for this subtopic' });
         }
 
@@ -319,20 +414,14 @@ app.post('/api/quiz/subtopic', (req, res) => {
                 usedQuestionIds: new Set(),
                 topicScores: {},
                 completedTopics: new Set(),
-                learningPath: []
+                learningPath: [],
+                difficulty: selectedDifficulty
             };
             userSessions.get(userId)[subject] = userSession;
         }
 
-        // Generate unique questions
-        const quizQuestions = generateUniqueQuestions(
-            subtopic.questions,
-            Math.min(6, subtopic.questions.length),
-            userSession.usedQuestionIds
-        );
-
-        // Mark questions as used
-        quizQuestions.forEach(q => userSession.usedQuestionIds.add(q.id));
+        // Store questions in session for later verification
+        userSession.currentQuestions = quizQuestions;
 
         // Return questions without correct answers
         const questionsForClient = quizQuestions.map(q => ({
@@ -343,8 +432,10 @@ app.post('/api/quiz/subtopic', (req, res) => {
 
         res.json({
             questions: questionsForClient,
-            subtopicName: subtopic.name,
-            totalQuestions: questionsForClient.length
+            subtopicName: subtopicId,
+            totalQuestions: questionsForClient.length,
+            difficulty: selectedDifficulty,
+            generatedByAI: hasGroqKey
         });
 
     } catch (error) {
@@ -353,8 +444,39 @@ app.post('/api/quiz/subtopic', (req, res) => {
     }
 });
 
+// Helper function for fallback subtopic questions
+function getFallbackSubtopicQuestions(subject, topicId, subtopicId, difficulty) {
+    const questionData = loadQuestionData(subject);
+    
+    if (!questionData || !questionData.topics) {
+        return [];
+    }
+
+    const topic = questionData.topics.find(t => t.id === topicId);
+    if (!topic) {
+        return [];
+    }
+
+    const subtopic = topic.subtopics?.find(st => st.id === subtopicId);
+    if (!subtopic || !subtopic.questions) {
+        return [];
+    }
+
+    let questions = subtopic.questions;
+    
+    // Filter by difficulty if available
+    if (difficulty && questions.some(q => q.difficulty)) {
+        const filtered = questions.filter(q => q.difficulty === difficulty);
+        if (filtered.length >= 3) {
+            questions = filtered;
+        }
+    }
+
+    return shuffleArray(questions).slice(0, 6);
+}
+
 // Submit subtopic quiz
-app.post('/api/quiz/submit', (req, res) => {
+app.post('/api/quiz/submit', async (req, res) => {
     try {
         const { userId, subject, topicId, subtopicId, answers } = req.body;
 
@@ -362,20 +484,13 @@ app.post('/api/quiz/submit', (req, res) => {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
-        const questionData = loadQuestionData(subject);
-        
-        // Find all questions from all subtopics
-        let allQuestions = [];
-        questionData.topics.forEach(topic => {
-            topic.subtopics.forEach(subtopic => {
-                allQuestions = allQuestions.concat(subtopic.questions);
-            });
-        });
+        const userSession = userSessions.get(userId)?.[subject];
+        const sessionQuestions = userSession?.currentQuestions || [];
 
         // Calculate score
         let correct = 0;
         const results = answers.map(answer => {
-            const question = allQuestions.find(q => q.id === answer.questionId);
+            const question = sessionQuestions.find(q => q.id === answer.questionId);
             if (question) {
                 const isCorrect = answer.selectedOption === question.correct;
                 if (isCorrect) correct++;
@@ -383,7 +498,8 @@ app.post('/api/quiz/submit', (req, res) => {
                     questionId: answer.questionId,
                     correct: isCorrect,
                     selectedOption: answer.selectedOption,
-                    correctOption: question.correct
+                    correctOption: question.correct,
+                    explanation: question.explanation || ''
                 };
             }
             return null;
@@ -392,7 +508,6 @@ app.post('/api/quiz/submit', (req, res) => {
         const score = (correct / answers.length) * 100;
 
         // Update user session
-        const userSession = userSessions.get(userId)?.[subject];
         if (userSession && subtopicId) {
             userSession.topicScores[subtopicId] = score;
             if (score >= 60) {
@@ -428,7 +543,8 @@ app.get('/api/learning-path/:userId/:subject', (req, res) => {
         res.json({
             learningPath: userSession.learningPath,
             completedTopics: Array.from(userSession.completedTopics || []),
-            topicScores: userSession.topicScores || {}
+            topicScores: userSession.topicScores || {},
+            difficulty: userSession.difficulty || 'medium'
         });
 
     } catch (error) {
@@ -437,14 +553,23 @@ app.get('/api/learning-path/:userId/:subject', (req, res) => {
     }
 });
 
+// Helper function to format topic names
+function formatTopicName(topicId) {
+    return topicId
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
 // Serve frontend
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
-// Start server - IMPORTANT: Listen on 0.0.0.0 for Render
+// Start server
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📚 Learning Path Generator is ready!`);
+    console.log(`🤖 Groq AI: ${process.env.GROQ_API_KEY ? '✅ Enabled' : '❌ Disabled (using question bank)'}`);
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });

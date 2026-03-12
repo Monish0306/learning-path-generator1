@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Menu -->
     <nav id="nav-menu" class="nav-menu hidden">
         <button class="nav-close-btn" onclick="toggleMenu()" title="Close menu">✕</button>
         <div class="nav-header">
@@ -55,12 +54,10 @@
         </div>
     </nav>
 
-    <!-- Menu Toggle Button -->
     <button id="menu-toggle" class="menu-toggle hidden" onclick="toggleMenu()">
         ☰
     </button>
 
-    <!-- Welcome Screen -->
     <div id="welcome-screen" class="screen active">
         <div class="hero-section">
             <div class="hero-content">
@@ -99,7 +96,6 @@
         </div>
     </div>
 
-    <!-- Auth Screen (Login/Signup) -->
     <div id="auth-screen" class="screen">
         <div class="auth-container">
             <div class="auth-back-btn" onclick="showWelcome()">← Back</div>
@@ -109,7 +105,6 @@
                 <button class="auth-tab" onclick="showSignupForm()">Sign Up</button>
             </div>
             
-            <!-- Login Form -->
             <form id="login-form" class="auth-form" onsubmit="return handleLogin(event)">
                 <h2>Welcome Back!</h2>
                 <p class="auth-subtitle">Login to continue your learning journey</p>
@@ -137,7 +132,6 @@
                 </p>
             </form>
             
-            <!-- Signup Form -->
             <form id="signup-form" class="auth-form hidden" onsubmit="return handleSignup(event)">
                 <h2>Create Account</h2>
                 <p class="auth-subtitle">Start your personalized learning journey</p>
@@ -186,7 +180,6 @@
         </div>
     </div>
 
-    <!-- Study Scheduler Screen -->
     <div id="scheduler-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -195,7 +188,6 @@
             </div>
             
             <div class="scheduler-container">
-                <!-- Schedule Settings -->
                 <div class="schedule-settings">
                     <h3>📝 Your Preferences</h3>
                     
@@ -239,7 +231,6 @@
                     </button>
                 </div>
                 
-                <!-- Generated Schedule -->
                 <div class="generated-schedule" id="generated-schedule">
                     <h3>📆 Your Personalized Schedule</h3>
                     <div id="schedule-output">
@@ -250,7 +241,6 @@
         </div>
     </div>
 
-    <!-- Revision Tracker Screen -->
     <div id="revision-tracker-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -301,7 +291,6 @@
         </div>
     </div>
 
-    <!-- Analytics Screen -->
     <div id="analytics-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -313,7 +302,6 @@
         </div>
     </div>
 
-    <!-- My Learning Screen -->
     <div id="my-learning-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -325,7 +313,6 @@
         </div>
     </div>
 
-    <!-- Settings Screen -->
     <div id="settings-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -373,14 +360,12 @@
         </div>
     </div>
 
-    <!-- Dashboard Screen -->
     <div id="dashboard-screen" class="screen">
         <div class="container">
             <div id="dashboard-content"></div>
         </div>
     </div>
 
-    <!-- Subject Selection Screen -->
     <div id="subject-selection-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -391,7 +376,80 @@
         </div>
     </div>
 
-    <!-- Assessment Screen -->
+    <!-- ==================== DIFFICULTY SELECTION SCREEN ==================== -->
+    <div id="difficulty-selection-screen" class="screen">
+        <div class="container">
+            <div class="difficulty-header">
+                <h1>Select Difficulty Level</h1>
+                <p id="difficulty-subject-name" class="difficulty-subtitle">Choose your knowledge level for this subject</p>
+            </div>
+
+            <div class="difficulty-cards">
+                <!-- Basic Level -->
+                <div class="difficulty-card" onclick="selectDifficulty('basic')">
+                    <div class="difficulty-icon">📚</div>
+                    <h2>Basic</h2>
+                    <p class="difficulty-description">Fundamental concepts and definitions</p>
+                    <ul class="difficulty-features">
+                        <li>✓ Simple MCQs</li>
+                        <li>✓ Core concepts</li>
+                        <li>✓ Basic syntax</li>
+                        <li>✓ Beginner-friendly</li>
+                    </ul>
+                    <div class="difficulty-level">
+                        <div class="level-bar">
+                            <div class="level-fill basic" style="width: 33%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medium Level -->
+                <div class="difficulty-card recommended" onclick="selectDifficulty('medium')">
+                    <div class="recommended-badge">RECOMMENDED</div>
+                    <div class="difficulty-icon">⚡</div>
+                    <h2>Medium</h2>
+                    <p class="difficulty-description">Practical applications and problem-solving</p>
+                    <ul class="difficulty-features">
+                        <li>✓ Code analysis</li>
+                        <li>✓ Scenarios</li>
+                        <li>✓ Implementation</li>
+                        <li>✓ AI-generated</li>
+                    </ul>
+                    <div class="difficulty-level">
+                        <div class="level-bar">
+                            <div class="level-fill medium" style="width: 66%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Level -->
+                <div class="difficulty-card" onclick="selectDifficulty('advanced')">
+                    <div class="difficulty-icon">🔥</div>
+                    <h2>Advanced</h2>
+                    <p class="difficulty-description">Complex algorithms and optimization</p>
+                    <ul class="difficulty-features">
+                        <li>✓ Advanced concepts</li>
+                        <li>✓ Edge cases</li>
+                        <li>✓ Design patterns</li>
+                        <li>✓ Expert-level</li>
+                    </ul>
+                    <div class="difficulty-level">
+                        <div class="level-bar">
+                            <div class="level-fill advanced" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="difficulty-footer">
+                <button class="btn-secondary" onclick="backToSubjectSelection()">
+                    ← Back to Subjects
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== ASSESSMENT SCREEN ==================== -->
     <div id="assessment-screen" class="screen">
         <div class="container">
             <button class="back-button" onclick="backToSubjectSelection()">← Change Subject</button>
@@ -404,7 +462,7 @@
                     <p id="question-counter">Question 1 of 10</p>
                 </div>
             </div>
-            <div class="quiz-container">
+            <div class="question-container">
                 <div class="question-card">
                     <h3 id="question-text" class="question-text"></h3>
                     <div id="options-container" class="options-container"></div>
@@ -417,7 +475,7 @@
         </div>
     </div>
 
-    <!-- Results Screen -->
+    <!-- ==================== RESULTS SCREEN ==================== -->
     <div id="results-screen" class="screen">
         <div class="container">
             <div class="results-container">
@@ -444,7 +502,7 @@
         </div>
     </div>
 
-    <!-- Learning Path Screen -->
+    <!-- ==================== LEARNING PATH SCREEN ==================== -->
     <div id="learning-path-screen" class="screen">
         <div class="container">
             <div class="screen-header">
@@ -455,33 +513,33 @@
         </div>
     </div>
 
-    <!-- Subtopic Quiz Screen -->
+    <!-- ==================== SUBTOPIC QUIZ SCREEN ==================== -->
     <div id="subtopic-quiz-screen" class="screen">
         <div class="container">
             <div class="quiz-header">
                 <button class="back-button" onclick="backToLearningPath()">← Back to Learning Path</button>
                 <div class="progress-bar-container">
-                    <div class="progress-bar" id="quiz-progress"></div>
+                    <div class="progress-bar" id="subtopic-quiz-progress"></div>
                 </div>
                 <div class="quiz-info">
-                    <h3 id="subtopic-title">Subtopic Quiz</h3>
-                    <p id="quiz-question-counter">Question 1 of 6</p>
+                    <h3 id="subtopic-quiz-title">Subtopic Quiz</h3>
+                    <p id="subtopic-question-counter">Question 1 of 6</p>
                 </div>
             </div>
-            <div class="quiz-container">
+            <div class="question-container">
                 <div class="question-card">
-                    <h3 id="quiz-question-text" class="question-text"></h3>
-                    <div id="quiz-options-container" class="options-container"></div>
+                    <h3 id="subtopic-question-text" class="question-text"></h3>
+                    <div id="subtopic-options-container" class="options-container"></div>
                     <div class="quiz-actions">
-                        <button class="btn-secondary" onclick="previousQuizQuestion()" id="quiz-prev-btn" disabled>Previous</button>
-                        <button class="btn-primary" onclick="nextQuizQuestion()" id="quiz-next-btn">Next</button>
+                        <button class="btn-secondary" onclick="previousSubtopicQuestion()" id="subtopic-prev-btn" disabled>Previous</button>
+                        <button class="btn-primary" onclick="nextSubtopicQuestion()" id="subtopic-next-btn">Next</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Quiz Results Screen -->
+    <!-- ==================== QUIZ RESULTS SCREEN ==================== -->
     <div id="quiz-results-screen" class="screen">
         <div class="container">
             <div class="results-container">
@@ -497,7 +555,7 @@
                         </div>
                     </div>
                     <h2 id="quiz-result-title">Quiz Complete!</h2>
-                    <p id="quiz-result-message"></p>
+                    <p id="quiz-results-message"></p>
                 </div>
                 <div id="quiz-answer-review" class="answer-review"></div>
                 <div class="results-actions">
@@ -508,13 +566,13 @@
         </div>
     </div>
 
-    <!-- Loading Spinner -->
+    <!-- ==================== LOADING SPINNER ==================== -->
     <div id="loading-spinner" class="loading-spinner hidden">
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
 
-  <!-- Scripts - CORRECT ORDER -->
+    <!-- ==================== JAVASCRIPT FILES ==================== -->
     <script src="js/profile.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/algorithms.js"></script>
