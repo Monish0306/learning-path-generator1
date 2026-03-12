@@ -11,18 +11,10 @@ const { generateAssessmentQuestions, generateSubtopicQuestions } = require('./se
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Allow all origins temporarily
 app.use(cors({
-
-    origin: [
-
-        'http://localhost:3000',
-
-        'https://learning-path-frontend1.onrender.com'  // YOUR frontend URL
-
-    ],
-
+    origin: '*',
     credentials: true
-
 }));
 
 app.use(bodyParser.json());

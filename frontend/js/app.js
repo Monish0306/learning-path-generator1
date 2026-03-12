@@ -1,7 +1,9 @@
-// UPDATED: Works both locally and in production
+// Use your actual backend URL here!
 const API_BASE_URL = window.location.hostname === 'localhost' 
+
     ? 'http://localhost:3000' 
-    : 'https://learning-path-backend-dqnk.onrender.com';
+
+    : 'https://learning-path-backend-5v2v.onrender.com';  // ← Replace with YOUR URL
 let currentState = {
     userId: null,
     userName: null,
