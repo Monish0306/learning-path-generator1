@@ -1,8 +1,7 @@
-// ==================== GLOBAL STATE ====================
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000'
-    : 'https://learning-path-generator1.onrender.com';
-
+// UPDATED: Works both locally and in production
+const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : 'https://learning-path-backend-dqnk.onrender.com';
 let currentState = {
     userId: null,
     userName: null,
