@@ -12,8 +12,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: '*',  // Allow all origins for now (we'll restrict later)
+
+    origin: [
+
+        'http://localhost:3000',
+
+        'https://learning-path-frontend1.onrender.com'  // YOUR frontend URL
+
+    ],
+
     credentials: true
+
 }));
 
 app.use(bodyParser.json());
