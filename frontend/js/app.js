@@ -1,9 +1,12 @@
-// Use your actual backend URL here!
+// API Configuration for Production
 const API_BASE_URL = window.location.hostname === 'localhost' 
-
     ? 'http://localhost:3000' 
+    : 'https://learning-path-backend-5v2v.onrender.com';
 
-    : 'https://learning-path-backend-5v2v.onrender.com';  // ← Replace with YOUR URL
+// Rest of your code...
+let currentUser = null;
+let currentSubject = null;
+// ... etc
 let currentState = {
     userId: null,
     userName: null,

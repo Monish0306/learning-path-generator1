@@ -11,11 +11,10 @@ const { generateAssessmentQuestions, generateSubtopicQuestions } = require('./se
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// NEW (secure):
 app.use(cors({
     origin: [
         'http://localhost:3000',
-        'https://learning-path-frontend.onrender.com'  // ← Replace with YOUR frontend URL
+        'https://learning-path-frontend-3voe.onrender.com'
     ],
     credentials: true
 }));
