@@ -1,4 +1,4 @@
-// ==================== USER DASHBOARD ====================
+// ==================== USER DASHBOARD - COMPLETE ====================
 
 function displayDashboard(profile) {
     const container = document.getElementById('dashboard-content');
@@ -20,11 +20,11 @@ function displayDashboard(profile) {
             </div>
             <div class="profile-info">
                 <h2>${profile.name}</h2>
-                <p class="profile-meta">${profile.university}</p>
-                <p class="profile-meta">${profile.email}</p>
-                <p class="profile-meta-small">Member since ${formatDate(new Date(profile.createdAt))}</p>
+                <p class="profile-meta">🎓 ${profile.university}</p>
+                <p class="profile-meta">📧 ${profile.email}</p>
+                <p class="profile-meta-small">📅 Member since ${formatDate(new Date(profile.createdAt))}</p>
             </div>
-            <button class="btn-secondary" onclick="showWelcome()">← Back to Home</button>
+            <button class="btn-secondary" onclick="loadSubjects()">← Back to Subjects</button>
         </div>
         
         <div class="stats-grid">
@@ -82,6 +82,7 @@ function displayDashboard(profile) {
     `;
 }
 
+// Calculate overall average
 function calculateOverallAverage(profile) {
     if (profile.quizHistory.length === 0) return 0;
     
@@ -201,12 +202,11 @@ function displayWeakAreas(profile) {
     return `
         <div class="weak-areas-list">
             ${sorted.map((area, index) => {
-                // CRITICAL: Check if getReferenceLinks is available
+                // Get reference links
                 let refLinks;
-                if (typeof window.getReferenceLinks === 'function') {
-                    refLinks = window.getReferenceLinks(area.subject, area.topic, area.topic);
+                if (typeof getReferenceLinks === 'function') {
+                    refLinks = getReferenceLinks(area.subject, area.topic, area.topic);
                 } else {
-                    console.error('❌ getReferenceLinks is not defined!');
                     refLinks = [
                         { title: '📚 GeeksforGeeks', url: 'https://www.geeksforgeeks.org/' },
                         { title: '📺 YouTube', url: 'https://www.youtube.com/' }
